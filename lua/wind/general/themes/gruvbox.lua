@@ -1,7 +1,6 @@
 vim.g.gitgutter_override_sign_column_highlight = 1
 vim.g.gruvbox_sign_column = 1
 
-vim.cmd[[colorscheme gruvbox]]
 import('general.autocmd').add_autocmd_color('gruvbox',function ()
   vim.api.nvim_exec([[
   hi! link xmlTag GruvboxOrange
@@ -23,3 +22,4 @@ import('general.autocmd').add_autocmd_color('gruvbox',function ()
   hi MatchParen ctermfg=172 ctermbg=232 guifg=#d79921 guibg=#43A047
   ]],true)
 end)
+vim.cmd[[colorscheme gruvbox]]

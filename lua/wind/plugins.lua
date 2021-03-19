@@ -71,7 +71,7 @@ local use_ts = vim.g.wind_use_treesitter == 1
 
 Plug {'nvim-treesitter/nvim-treesitter', config = 'treesitter', cond = use_ts}
 Plug {'nvim-treesitter/playground', on = 'TSPlaygroundToggle', cond = use_ts}
--- Plug {'windwp/nvim-ts-autotag', cond = use_ts}
+Plug {'windwp/nvim-ts-autotag', cond = use_ts}
 
 -- }}}
 

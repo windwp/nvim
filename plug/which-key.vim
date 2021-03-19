@@ -44,7 +44,6 @@ let g:which_key_map['R'] =  'replace text project'
 let g:which_key_map['x'] = 'Excute script'
 let g:which_key_map['-'] = [ ':execute ":wincmd = | wincmd \|"' , 'maximum window'  ]
 let g:which_key_map['='] = [ '<C-W>='                           , 'balance windows'       ]
-let g:which_key_map[';'] = [ ':Commands'                        , 'commands'              ]
 let g:which_key_map['W'] = [ ':lcd %:p:h'                       , 'set working directory' ]
 let g:which_key_map['f'] = [ ':call MyCodeFormat()'             , 'format selected'       ]
 let g:which_key_map['h'] = [ '<C-W>s'                           , 'split below'           ]
@@ -132,13 +131,18 @@ let g:which_key_map.t = {
 
 let g:which_key_map.j = {
       \ 'name' : '+jump' ,
-      \ 'c' : [':call v:lua.Wind.load_plug("telescope").ag_picker_current_folder()'            , 'picker file current folder'      ] ,
+      \ 'c' : [':call v:lua.Wind.load_plug("telescope").picker_current_folder()'            , 'picker file current folder'      ] ,
       \ 'v' : [':call v:lua.Wind.load_plug("telescope").file_picker({"cwd":"~/.config/nvim"})' , 'picker file in nvim config'      ] ,
       \ 'd' : [':call v:lua.Wind.load_plug("telescope").git_picker({"cwd":"~/dotfiles"})'      , 'picker file in dotfiles'      ]    ,
       \ 'm' : [':call v:lua.require("telescope").extensions.media_files.media_files()'              , 'picker  media file '      ]        ,
       \ 'g' : [':call v:lua.require("telescope/builtin").git_files()'                             , 'picker git'      ]                 ,
       \ 'n' : [':bn'                             , 'picker git'      ]                 ,
       \ 'p' : [':bp'                             , 'picker git'      ]                 ,
+      \ }
+
+let g:which_key_map[';'] = {
+      \ 'name' : '+jump' ,
+      \ 'd' : [':call v:lua.Wind.load_plug("telescope").ag_find_folder({"cwd":"~/dotfiles"})'      , 'picker file in dotfiles'      ]    ,
       \ }
 " e is for fast edit
 let g:which_key_map.e = {

@@ -134,11 +134,10 @@ function M.picker_codeaction(opts)
   builtin.lsp_code_actions(opts)
 end
 
-function M.ag_picker_current_folder(opts)
+function M.picker_current_folder(opts)
    opts = opts or {}
   opts.cwd = "%:p:h"
   opts.tilte = ""
-
   M.file_picker(opts)
 end
 
@@ -279,10 +278,9 @@ end
 function M.ag_find_folder(opts)
   closeFern()
   -- close fern
-  local directory=vim.fn.expand("%:p:h")
   opts = opts or {}
   opts.attach_mappings = k_mappings
-  opts.cwd = directory
+  opts.cwd = opts.cwd or vim.fn.expand("%:p:h")
   opts.shorten_path = true
   local vimgrep_arguments=  {
       'ag',
@@ -304,7 +302,7 @@ function M.ag_find_folder(opts)
   )
 
   pickers.new(opts, {
-    prompt_title = 'Search file '.. directory,
+    prompt_title = 'Search file '.. opts.cwd,
     finder = live_grepper,
     previewer = previewers.vimgrep.new(opts),
     sorter = conf.generic_sorter(opts),

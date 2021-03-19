@@ -89,7 +89,7 @@ nmap grt vitp
 nmap grat viatp
 
 " goto bracket i don't want to use shift key %
-nnoremap g5 %
+nmap g5 %
 
 nnoremap <C-A> ggVG
 " use alt-a for increase number"
