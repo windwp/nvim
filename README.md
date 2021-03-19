@@ -15,7 +15,7 @@
 All plugins config is store on folder /plug/*.vim and /lua/wind/plug/*.lua
 
 If you are develop or test config you can run command `:WindDev`.
-It will enable Dev mode and all import module is auto reload use plenary.
+It will enable Dev mode and all import module is auto reload.
 on normal mode it use require to get a cache version of lua.
 
 ## LSP
@@ -49,11 +49,16 @@ Plug {'glepnir/lspsaga.nvim' , branch = 'main'      , config = "lspsaga"}
 Plug {'lambdalisue/fern.vim' , config = 'fern.vim'}
 
 ```
-Plug can load load with filetype(ft) and command(on).
-I don't need  to rename Plug to pag or packer :)
+Plug can lazy load with filetype(ft) and command(on).
+and I don't need to rename Plug to pag or use :)
 
-## Some old vim plugins
+## Some vim plugins
 - I like my light-line. I know many lua status line but I still love
 light-line. It can match with my colorscheme and bufferline when I change
 colorscheme.
-- nvim-tree is good but it can't copy or move multiple file
+
+- nvim-tree is good but it can't work with multiple file and I like fern too
+
+## Thanks
+[habamax](https://github.com/habamax/.vim/)
+[tjdevries](https://github.com/tjdevries)
