@@ -80,7 +80,7 @@ local function theme(colors)
     hi.CursorLine   = { guifg = nil                , guibg = colors.bg2         , gui = NONE   , guisp = nil }
     hi.CursorLineNr = { guifg = colors.yellow      , guibg = colors.bg          , gui = nil    , guisp = nil }
     hi.Debug        = { guifg = colors.pink_light  , guibg = nil                , gui = nil    , guisp = nil }
-    hi.Directory    = { guifg = colors.cyan  , guibg = nil                , gui = nil    , guisp = nil }
+    hi.Directory    = { guifg = colors.cyan        , guibg = nil                , gui = nil    , guisp = nil }
     hi.Error        = { guifg = colors.red         , guibg = NONE               , gui = nil    , guisp = nil }
     hi.ErrorMsg     = { guifg = colors.red_light   , guibg =NONE                , gui = nil    , guisp = nil }
     hi.Exception    = { guifg = colors.red         , guibg = nil                , gui = nil    , guisp = nil }
@@ -92,7 +92,7 @@ local function theme(colors)
     hi.Macro        = { guifg = colors.cyan        , guibg = nil                , gui = nil    , guisp = nil }
     hi.MatchParen   = { guifg = colors.bg          , guibg = colors.cyan_light  , gui = nil    , guisp = nil }
     hi.ModeMsg      = { guifg = colors.grey        , guibg = nil                , gui = nil    , guisp = nil }
-    hi.MoreMsg      = { guifg = colors.green      , guibg = nil                , gui = nil    , guisp = nil }
+    hi.MoreMsg      = { guifg = colors.green       , guibg = nil                , gui = nil    , guisp = nil }
     hi.NonText      = { guifg = colors.grey        , guibg = nil                , gui = nil    , guisp = nil }
     hi.Normal       = { guifg = colors.fg          , guibg = colors.bg          , gui = nil    , guisp = nil }
     -- hi.NormalFloat  = { guifg = colors.fg          , guibg = colors.bg2         , gui = nil    , guisp = nil }
@@ -102,7 +102,7 @@ local function theme(colors)
     hi.PMenuSel     = { guifg = colors.cyan        , guibg = colors.grey        , gui = nil    , guisp = nil }
     hi.PmenuThumb   = { guifg = colors.cyan        , guibg = colors.grey        , gui = nil    , guisp = nil }
     hi.Question     = { guifg = colors.cyan        , guibg = nil                , gui = nil    , guisp = nil }
-    hi.QuickFixLine = { guifg = colors.bg                , guibg = colors.yellow   , gui = NONE   , guisp = nil }
+    hi.QuickFixLine = { guifg = colors.black       , guibg = colors.yellow   , gui = NONE   , guisp = nil }
     hi.Search       = { guifg = colors.bg          , guibg = colors.yellow      , gui = nil    , guisp = nil }
     hi.SignColumn   = { guifg = nil                , guibg = nil                , gui = nil    , guisp = nil }
     hi.IndentLine   = { guifg = colors.black_bold  , guibg = nil                , gui = nil    , guisp = nil }
@@ -303,11 +303,10 @@ M.setup = function ()
     local hi = theme(wind)
     vim.o.background = 'dark'
     vim.o.termguicolors = true
-    vim.g.colors_name="wind"
+    vim.g.colors_name = "wind"
     for group,color in pairs(hi) do
       highlight(group, color)
     end
-
 end
 M.setup()
 
