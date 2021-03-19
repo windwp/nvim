@@ -140,9 +140,10 @@ let g:which_key_map.j = {
       \ 'p' : [':bp'                             , 'picker git'      ]                 ,
       \ }
 
-let g:which_key_map[';'] = {
+let g:which_key_map[';']= {
       \ 'name' : '+jump' ,
       \ 'd' : [':call v:lua.Wind.load_plug("telescope").ag_find_folder({"cwd":"~/dotfiles"})'      , 'picker file in dotfiles'      ]    ,
+      \ 'v' : [':call v:lua.Wind.load_plug("telescope").ag_find_folder({"cwd":"~/.config/nvim"})'      , 'picker file in dotfiles'      ]    ,
       \ }
 " e is for fast edit
 let g:which_key_map.e = {

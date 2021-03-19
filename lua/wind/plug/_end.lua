@@ -3,7 +3,7 @@ require("nvim-autopairs").setup({
 })
 -- require("nvim-ts-autotag").setup()
 require 'colorizer'.setup {
-  'css' ; 'scss' ; 'yml' ; 'yaml' ; 'vim' ; 'javascript' ; 'html' ; "rasi" , "conf"
+  'css' ; 'scss' ; 'yml' ; 'yaml' ; 'vim' ; 'javascript' ; 'html' ; "rasi", "conf", "lua"
 }
 
 
@@ -12,3 +12,4 @@ import('general.autocmd').add_autocmd_color('whitespace',function ()
   vim.cmd[[highlight ExtraWhitespace ctermbg=red guibg=red]]
   vim.cmd[[match ExtraWhitespace /\s\+$/]]
 end)
+

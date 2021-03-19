@@ -277,36 +277,11 @@ end
 
 function M.ag_find_folder(opts)
   closeFern()
-  -- close fern
   opts = opts or {}
   opts.attach_mappings = k_mappings
   opts.cwd = opts.cwd or vim.fn.expand("%:p:h")
   opts.shorten_path = true
-  local vimgrep_arguments=  {
-      'ag',
-      '--column',
-      '--numbers',
-      '--noheading',
-      '--nocolor',
-      '--smart-case',
-  }
-  local live_grepper = finders.new_job(function(prompt)
-      if not prompt or prompt == "" then
-        return nil
-      end
-      -- print (table.tostring(flatten { vimgrep_arguments, prompt }))
-      return flatten { vimgrep_arguments, prompt ,opts.cwd}
-    end,
-    opts.entry_maker or make_entry.gen_from_vimgrep(opts),
-    opts.max_results
-  )
-
-  pickers.new(opts, {
-    prompt_title = 'Search file '.. opts.cwd,
-    finder = live_grepper,
-    previewer = previewers.vimgrep.new(opts),
-    sorter = conf.generic_sorter(opts),
-  }):find()
+  require('telescope.builtin').live_grep(opts)
 end
 
 nnoremap({'<c-p>'     , '<cmd>lua Wind.load_plug("telescope").file_picker()<cr>'     })
@@ -318,8 +293,8 @@ nnoremap({'g,'        , '<cmd>lua Wind.load_plug("telescope").picker_oldfiles()<
 
 vim.api.nvim_exec([[
   command! -nargs=* SearchByFileType call v:lua.Wind.load_plug("telescope").ag_find_filetype()
-  command! -nargs=* SearchCurrentFolder call v:lua.Wind.load_lsp("telescope").ag_find_folder()
-  command! -nargs=* LspCodeAction call v:lua.Wind.load_lsp("telescope/builtin").lsp_range_code_actions()
+  command! -nargs=* SearchCurrentFolder call v:lua.Wind.load_plug("telescope").ag_find_folder()
+  command! -nargs=* LspCodeAction call v:lua.Wind.load_plug("telescope/builtin").lsp_range_code_actions()
 ]],false)
 
 import('general.autocmd').add_autocmd_color('telescope', function ()
