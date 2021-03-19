@@ -1,0 +1,25 @@
+{
+  "link": {
+    "prefix": "link",
+    "body": ["[$0](http://example.com)"],
+    "description": "link"
+  },
+  "image": {
+    "prefix": "image",
+    "body": ["![$0](http://image.gif)"],
+    "description": "image"
+  },
+  "codeblock":{
+    "prefix" :"code",
+    "body":["``` $0\n","```"]
+  },
+  "table": {
+    "prefix": "table",
+    "body": [
+      "| Usage         | KEY                  |",
+      "| ------------- | ---------------------|",
+      "| $0 | |"
+    ],
+    "description":"table"
+  }
+}

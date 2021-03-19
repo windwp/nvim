@@ -1,0 +1,7 @@
+{
+  "foldcomment": {
+    "prefix": "foldcomment",
+    "body": "-- $1 {{{\n\t $2 \n-- }}}",
+    "description": "fold for lua"
+  }
+}

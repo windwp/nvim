@@ -1,0 +1,11 @@
+local map = import('core.keymap')
+
+map.nnoremap ({'gx'         , "<cmd>lua import('core.nav').open_or_search(0)<cr>"           } )
+map.vnoremap ({'gx'         , "<esc>:call v:lua.import('core.nav').open_or_search(1)<cr>"   } )
+map.nnoremap ({'gb'         , "<cmd>lua import('core.nav').go_back()<cr>"                  } )
+map.nnoremap ({'<a-v>'      , "<cmd>lua Wind.load_plug('copyq').show()<cr>"                 } )
+map.inoremap ({'<a-v>'      , "<esc>:lua Wind.load_plug('copyq').show()<cr>"                 } )
+map.nnoremap ({'<leader>ul' , "<cmd>lua require('nvim-autospace').format()<cr>"             } )
+map.nnoremap ({'gk'         , "<cmd>lua import('core.nav').goto_buff_or_qf('previous')<cr>" } )
+map.nnoremap ({'gj'         , "<cmd>lua import('core.nav').goto_buff_or_qf('next')<cr>"     } )
+map.xnoremap ({'P'          , "v:lua.Wind.trimNewLine()", expr = true    } )

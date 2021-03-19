@@ -1,0 +1,5 @@
+*.swp
+*.local
+*.ttf binary
+*.png binary
+.netrwhist

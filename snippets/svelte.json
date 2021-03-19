@@ -1,0 +1,46 @@
+{
+
+  "rinput":{
+    "prefix":"rinput",
+    "body":"import { RImageUpload, RTabs } from '$components/ui/form/index';",
+    "description":""
+  },
+  "rmodel":{
+    "prefix":"rmodel",
+    "body":"import type { RModel } from '$common/model/rmodel';",
+    "description":""
+  },
+  "ifelse":{
+    "description": "hifelse",
+    "prefix": ["hif"],
+    "body": [
+      "{#if $1}",
+      "{:else}",
+      "{/if}"
+    ]
+  },
+  "foreach":{
+    "prefix": "hfor",
+    "body": [
+      "{#each list as  comp}",
+      "  <li> $1</li>",
+      "{/each}"
+    ],
+    "description": "foreach"
+  },
+  "dispatch":{
+    "prefix": "dispatch",
+    "body": [
+      "import { createEventDispatcher } from 'svelte';",
+      "const dispatch = createEventDispatcher();"
+    ],
+    "description": "event"
+  },
+  "onMount":{
+    "prefix": "onMount",
+    "body": [
+      "import { onMount } from 'svelte';",
+      "onMount(() => {\n\n });"
+    ]
+  }
+}
