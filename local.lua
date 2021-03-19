@@ -11,6 +11,6 @@ utils.set_vim_global({
   wind_tmux_line        = 1,
   wind_auto_close       = 1,
   wind_use_indent       = 1,
-  wind_theme            = 'rigel',
+  wind_theme            = 'wind',
   wind_statusline_theme = 'pywal',
 }, true)

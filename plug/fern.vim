@@ -23,11 +23,11 @@ let g:fern#autoclose=1
 noremap <silent> F :let g:fern#autoclose=1 <bar> :Fern %:h -drawer -reveal=%:p<CR>
 noremap <silent> <c-b> :let g:fern#autoclose=0 <bar> :Fern . -drawer -reveal=% -toggle<CR><C-w>=
 
-if &background=='dark'
-  hi FernBranchText  ctermfg=223 ctermbg=232 guifg=#fabd2f guibg=NONE
-else
-  hi FernBranchText  ctermfg=223 ctermbg=232 guifg=#0277BD guibg=NONE
-endif
+" if &background=='dark'
+"   hi FernBranchText  ctermfg=223 ctermbg=232 guifg=#fabd2f guibg=NONE
+" else
+"   hi FernBranchText  ctermfg=223 ctermbg=232 guifg=#0277BD guibg=NONE
+" endif
 
 function! s:closeFern(target) abort
   if a:target == "split"
