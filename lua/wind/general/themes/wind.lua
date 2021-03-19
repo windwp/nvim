@@ -1,11 +1,12 @@
---[=====[
--- Wind
--- URL: https://github.com/windwp/windvim
--- Author: wind
--- License: MIT
--- https://github.com/RRethy/nvim-base16
--- https://github.com/Rigellute/rigel
---]=====]
+--[[
+  Wind
+  URL: https://github.com/windwp/nvim
+  Author: wind
+  License: MIT
+
+  https://github.com/RRethy/nvim-base16
+  https://github.com/Rigellute/rigel
+--]]
 local wind = {
   bg2         = "#001a25",
   fg          = "#e6e6dc",
@@ -20,7 +21,7 @@ local wind = {
   black_light = "#77929e",
   black_gruv  = "#282828",
   blue        = "#1c8db2",
-  blue_bold   = "#7eb2dd",
+  blue_dark   = "#7eb2dd",
   blue_gruv   = "#8ec07c",
   blue_light  = "#b3e5fc",
   cyan        = "#00cccc",
@@ -68,7 +69,6 @@ local BOLD      = 'bold'
 local UNDERLINE = 'underline'
 local STRIKE    = 'strikethrough'
 
-local M = {}
 
 local function highlight(group, color)
     local gui = color.gui and 'gui=' .. color.gui or 'gui=NONE'
@@ -133,7 +133,7 @@ local function theme(colors)
     hi.WildMenu     = { guifg = colors.fg          , guibg = colors.grey        , gui = nil  , guisp = nil }
 
     hi.SpellBad   = { guifg = colors.black_light, guibg = nil, gui = 'undercurl', guisp = colors.grey }
-    hi.SpellLocal = { guifg = colors.black_light, guibg = nil, gui = 'undercurl', guisp = colors.blue_bold }
+    hi.SpellLocal = { guifg = colors.black_light, guibg = nil, gui = 'undercurl', guisp = colors.blue_dark }
     hi.SpellCap   = { guifg = colors.black_light, guibg = nil, gui = 'undercurl', guisp = colors.pink_light }
     hi.SpellRare  = { guifg = colors.black_light, guibg = nil, gui = 'undercurl', guisp = colors.cyan_light }
 
@@ -145,7 +145,7 @@ local function theme(colors)
     hi.Boolean        = { guifg = colors.red         , guibg = nil , gui = NONE        , guisp = nil }
     hi.Float          = { guifg = colors.red         , guibg = nil , gui = NONE        , guisp = nil }
     hi.Identifier     = { guifg = colors.orange      , guibg = nil , gui = NONE        , guisp = nil }
-    hi.Function       = { guifg = colors.blue_bold   , guibg = nil , gui = NONE        , guisp = nil }
+    hi.Function       = { guifg = colors.blue_dark   , guibg = nil , gui = NONE        , guisp = nil }
     hi.Statement      = { guifg = colors.blue        , guibg = nil , gui = NONE        , guisp = nil }
     hi.Conditional    = { guifg = colors.blue        , guibg = nil , gui = NONE        , guisp = nil }
     hi.Repeat         = { guifg = colors.blue        , guibg = nil , gui = NONE        , guisp = nil }
@@ -168,7 +168,7 @@ local function theme(colors)
     hi.Delimiter      = { guifg = colors.blue        , guibg = nil , gui = NONE        , guisp = nil }
     hi.SpecialComment = { guifg = colors.cyan_light  , guibg = nil , gui = NONE        , guisp = nil }
     hi.Debug          = { guifg = colors.pink_light  , guibg = nil , gui = NONE        , guisp = nil }
-    hi.Underlined     = { guifg = colors.grey_light  , guibg = nil , gui = UNDERLINE , guisp = nil }
+    hi.Underlined     = { guifg = colors.grey_light  , guibg = nil , gui = UNDERLINE   , guisp = nil }
     hi.Error          = { guifg = colors.red_light   , guibg = nil , gui = NONE        , guisp = nil }
     hi.Todo           = { guifg = colors.pink_light  , guibg = nil , gui = NONE        , guisp = nil }
 
@@ -211,7 +211,7 @@ local function theme(colors)
     hi.TSFuncMacro          = { guifg = colors.blue_light  , guibg = nil , gui = NONE            , guisp = nil }
     hi.TSInclude            = { guifg = colors.cyan        , guibg = nil , gui = NONE            , guisp = nil }
     hi.TSKeyword            = { guifg = colors.blue        , guibg = nil , gui = NONE            , guisp = nil }
-    hi.TSKeywordFunction    = { guifg = colors.blue        , guibg = nil , gui = NONE            , guisp = nil }
+    hi.TSKeywordFunction    = { guifg = colors.blue_dark   , guibg = nil , gui = NONE            , guisp = nil }
     hi.TSLabel              = { guifg = colors.pink        , guibg = nil , gui = NONE            , guisp = nil }
     hi.TSMethod             = { guifg = colors.pink        , guibg = nil , gui = NONE            , guisp = nil }
     hi.TSNamespace          = { guifg = colors.cyan        , guibg = nil , gui = NONE            , guisp = nil }
@@ -233,11 +233,11 @@ local function theme(colors)
     hi.TSText               = { guifg = colors.fg          , guibg = nil , gui = NONE            , guisp = nil }
     hi.TSStrong             = { guifg = colors.cyan        , guibg = nil , gui = BOLD            , guisp = nil }
     hi.TSEmphasis           = { guifg = colors.cyan_light  , guibg = nil , gui = ITALIC          , guisp = nil }
-    hi.TSUnderline          = { guifg = colors.cyan        , guibg = nil , gui = UNDERLINE     , guisp = nil }
-    hi.TSStrike             = { guifg = colors.cyan_light  , guibg = nil , gui = STRIKE, guisp = nil }
+    hi.TSUnderline          = { guifg = colors.cyan        , guibg = nil , gui = UNDERLINE       , guisp = nil }
+    hi.TSStrike             = { guifg = colors.cyan_light  , guibg = nil , gui = STRIKE          , guisp = nil }
     hi.TSTitle              = { guifg = colors.green       , guibg = nil , gui = NONE            , guisp = nil }
     hi.TSLiteral            = { guifg = colors.green_light , guibg = nil , gui = NONE            , guisp = nil }
-    hi.TSURI                = { guifg = colors.fg          , guibg = nil , gui = UNDERLINE     , guisp = nil }
+    hi.TSURI                = { guifg = colors.fg          , guibg = nil , gui = UNDERLINE       , guisp = nil }
     hi.TSType               = { guifg = colors.orange      , guibg = nil , gui = NONE            , guisp = nil }
     hi.TSTypeBuiltin        = { guifg = colors.orange      , guibg = nil , gui = NONE            , guisp = nil }
     hi.TSVariable           = { guifg = colors.blue_light  , guibg = nil , gui = NONE            , guisp = nil }
@@ -298,24 +298,24 @@ local function theme(colors)
     hi.TelescopePromptPrefix   = { guifg = colors.green_light , guibg = nil            , gui = nil , guisp = nil }
 
     hi.FernBranchText   = { guifg = colors.blue   , guibg = nil , gui = nil    , guisp = nil }
-    hi.typescriptImport  = { guifg = colors.green , guibg = nil , gui = ITALIC , guisp = nil}
+    hi.typescriptImport  = { guifg = colors.green , guibg = nil , gui = ITALIC , guisp = nil }
 
     return hi
 
 end
 
-M.setup = function ()
-    vim.api.nvim_command('syntax on')
-    vim.api.nvim_command('syntax reset')
-    vim.api.nvim_command('hi clear')
-    vim.api.nvim_command('set termguicolors')
-    local hi = theme(wind)
-    vim.o.background = 'dark'
-    vim.o.termguicolors = true
-    vim.g.colors_name = "wind"
-    for group,color in pairs(hi) do
-      highlight(group, color)
-    end
+local function setup()
+  vim.api.nvim_command('syntax on')
+  vim.api.nvim_command('syntax reset')
+  vim.api.nvim_command('hi clear')
+  vim.api.nvim_command('set termguicolors')
+  local hi = theme(wind)
+  vim.o.background = 'dark'
+  vim.o.termguicolors = true
+  vim.g.colors_name = "wind"
+  for group,color in pairs(hi) do
+    highlight(group, color)
+  end
 end
-M.setup()
 
+setup()

@@ -1,7 +1,8 @@
 
 local hiLink= import('core.utils').hiLink
 local ts = require 'nvim-treesitter.configs'
-local parser_config = require"nvim-treesitter.parsers".get_parser_configs()
+local keymap = import('core.keymap')
+-- local parser_config = require"nvim-treesitter.parsers".get_parser_configs()
 
 -- parser_config.svelte = {
 --   install_info = {
@@ -39,18 +40,6 @@ if vim.g.wind_theme == 'miramare' then
  hiLink('TSConstructor','Cyan')
  hiLink('TSProperty','White')
 end
--- if vim.g.wind_theme == 'rigel' then
---  hiLink('TSProperty', 'Normal') --white
---  hiLink('TSMethod', 'jsGlobalNodeObjects') --purple
---  hiLink('TSType', 'Constant') -- orange
---  hiLink('TSParameter', 'PreProc')-- pink
---   --hiLink('TSVariable', 'Include') -- green
---  hiLink('TSVariable', 'Normal') --blue
---  hiLink('TSVariableBuiltin', 'Structure')-- blue
---  hiLink('TSPunctBracket', 'Structure')
---  hiLink('TSPunctDelimiter', 'Structure')
---  hiLink('TSPunctSpecial', 'Structure')
---  hiLink('TSTagDelimiter', 'Structure')
--- end
 vim.cmd[[set foldmethod=expr]]
 vim.cmd[[ set foldexpr=nvim_treesitter#foldexpr() ]]
+keymap.nnoremap({'<leader><leader>.', '<cmd>:TSHighlightCapturesUnderCursor<cr>'})
