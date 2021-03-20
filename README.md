@@ -23,7 +23,7 @@ with Plug you can customize it to load config from lua or vim
 Plug {'neoclide/jsonc.vim'   , ft = 'json'}
 Plug {'junegunn/gv.vim'      , on = 'GV'}
 
--- load lspsaga in folder /lua/wind/lsp/plug/lspsaga.lua
+-- load lspsaga in folder /lua/wind/plug/lspsaga.lua
 Plug {'glepnir/lspsaga.nvim' , branch = 'main'      , config = "lspsaga"}
 
 -- load vim file in /plug/fern.vim
