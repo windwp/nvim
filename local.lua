@@ -1,7 +1,7 @@
 local utils = import('core.utils')
 utils.set_vim_global({
   wind_use_bg           = 1,
-  wind_use_agsort       = 1,
+  wind_use_agsort       = 0,
   wind_use_treesitter   = 1,
 
   wind_use_icon         = 1,
