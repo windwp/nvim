@@ -11,5 +11,5 @@ utils.set_vim_global({
   wind_auto_close       = 1,
   wind_use_indent       = 1,
   wind_theme            = 'rigel',
-  wind_statusline_theme = 'pywal',
+  wind_statusline_theme = 'wind',
 }, true)

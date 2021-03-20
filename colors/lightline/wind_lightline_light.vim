@@ -1,17 +1,3 @@
-" =============================================================================
-" Filename: autoload/lightline/colorscheme/PaperColor_light.vim
-" Author: TKNGUE
-" License: MIT License
-" Last Change: 2015/07/28 07:46:40.
-" =============================================================================
-
-" =============================================================================
-" Filename: autoload/lightline/colorscheme/PaperColor_light.vim
-" Author: TKNGUE
-" License: MIT License
-" Last Change: 2015/07/28 07:46:40.
-" =============================================================================
-
 let s:red = '#df0000'
 let s:green = '#008700'
 let s:blue = '#4271ae'
@@ -59,4 +45,4 @@ let s:p.tabline.right = copy(s:p.normal.right)
 let s:p.normal.error = [ [ s:background, s:error ] ]
 let s:p.normal.warning = [ [ s:background, s:olive ] ]
 
-let g:lightline#colorscheme#pywal#palette = lightline#colorscheme#fill(s:p)
+let g:lightline#colorscheme#wind#palette = lightline#colorscheme#fill(s:p)

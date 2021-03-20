@@ -1,4 +1,4 @@
-## NEOVIM Config
+## NEOVIM Config - Windvim
 
 ![demo](https://i.imgur.com/APKMx0f.png)
 
@@ -12,11 +12,6 @@
 * [Paq](https://github.com/savq/paq-nvim)
 * [Telescope](https://github.com/nvim-telescope/telescope.nvim)
 
-All plugins config is store on folder /plug/*.vim and /lua/wind/plug/*.lua
-
-If you are develop or test config you can run command `:WindDev`.
-It will enable Dev mode and all import module is auto reload.
-on normal mode it use require to get a cache version of lua.
 
 ## LSP
 
@@ -39,6 +34,7 @@ I use paq and create a function Plug so I can use it like (vim-plug)
 with Plug you can customize it to load config from lua or vim
 
 ``` lua
+
 Plug {'neoclide/jsonc.vim'   , ft = 'json'}
 Plug {'junegunn/gv.vim'      , on = 'GV'}
 
@@ -52,13 +48,8 @@ Plug {'lambdalisue/fern.vim' , config = 'fern.vim'}
 Plug can lazy load with filetype(ft) and command(on).
 and I don't need to rename Plug to pag or use :)
 
-## Some vim plugins
-- I like my light-line. I know many lua status line but I still love
-light-line. It can match with my colorscheme and bufferline when I change
-colorscheme.
-
-- nvim-tree is good but it can't work with multiple file and I like fern too
 
 ## Thanks
+
 [habamax](https://github.com/habamax/.vim/)
 [tjdevries](https://github.com/tjdevries)

@@ -1,17 +1,3 @@
-function! wind#Preserve(command) abort
-    " Preparation: save last search, and cursor position.
-    let l:pos=winsaveview()
-    let l:search=@/
-    " Do the business:
-    keeppatterns execute a:command
-    " Trim trailing blank lines
-    " keeppatterns %s#\($\n\s*\)\+\%$##
-    " Clean up: restore previous search history, and cursor position
-    let @/=l:search
-    nohlsearch
-    call winrestview(l:pos)
-endfunction
-
 function! wind#open() abort
     " Linux/BSD
     if executable('xdg-open')
@@ -40,12 +26,6 @@ function! wind#IsEndOfLine() abort
         endif
     endwhile
     return 1
-endfunction
-
-"check current cursor is end of line"
-function! wind#RemoveNewLine() abort
-    let clipboard = getreg('+')
-    echom "l:clipboard: " clipboard
 endfunction
 
 function! wind#MoveLine(dir)  abort

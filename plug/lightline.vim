@@ -13,10 +13,10 @@ if !exists("g:wind_use_note")
   " hi Search  ctermfg=172 ctermbg=232 guifg=#d79921 guibg=#0f0f0f
   " highlight ColorColumn ctermbg=0 guibg=lightgrey
   " change colorin auto complete menu
-  source $HOME/.config/nvim/colors/lightline/pywal_lightline_dark.vim
+  source $HOME/.config/nvim/colors/lightline/wind_lightline_dark.vim
 else
   set background=light
-  source $HOME/.config/nvim/colors/lightline/pywal_lightline_light.vim
+  source $HOME/.config/nvim/colors/lightline/wind_lightline_light.vim
 endif
 
 " }}}

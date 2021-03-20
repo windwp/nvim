@@ -1,10 +1,3 @@
-" =============================================================================
-" Filename: autoload/lightline/colorscheme/PaperColor_dark.vim
-" Author: TKNGUE
-" License: MIT License
-" Last Change: 2015-07-27 06:01
-" =============================================================================
-
 let s:red = '#df0000'
 let s:green = '#008700'
 let s:blue = '#00afaf'
@@ -48,7 +41,7 @@ let s:p.normal.left = [ [ s:foreground, s:background ], [ s:statusline_active_fg
 
 if(get(g:, "wind_alert_line" , 0) == 1)
     let s:p.normal.right = [ [ s:foreground, s:background ], [ s:statusline_active_fg, s:status ], [s:foreground,s:red],[ s:statusline_active_fg, s:statusline_active_bg ] ]
-else 
+else
     let s:p.normal.right = [ [ s:foreground, s:background ], [ s:statusline_active_fg, s:status ], [s:foreground,s:background],[ s:statusline_active_fg, s:statusline_active_bg ] ]
 endif
 
@@ -66,4 +59,4 @@ let s:p.tabline.right = copy(s:p.normal.right)
 let s:p.normal.error = [ [ s:background, s:error ] ]
 
 
-let g:lightline#colorscheme#pywal#palette = lightline#colorscheme#fill(s:p)
+let g:lightline#colorscheme#wind#palette = lightline#colorscheme#fill(s:p)

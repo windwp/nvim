@@ -198,7 +198,7 @@ local function theme(colors)
     hi.TSCharacter          = { guifg = colors.cyan        , guibg = nil , gui = NONE            , guisp = nil }
     hi.TSComment            = { guifg = colors.black_light , guibg = nil , gui = NONE            , guisp = nil }
     hi.TSConstructor        = { guifg = colors.orange      , guibg = nil , gui = NONE            , guisp = nil }
-    hi.TSConditional        = { guifg = colors.blue        , guibg = nil , gui = NONE            , guisp = nil }
+    hi.TSConditional        = { guifg = colors.fg_light        , guibg = nil , gui = NONE            , guisp = nil }
     hi.TSConstant           = { guifg = colors.orange      , guibg = nil , gui = NONE            , guisp = nil }
     hi.TSConstBuiltin       = { guifg = colors.orange      , guibg = nil , gui = NONE            , guisp = nil }
     hi.TSConstMacro         = { guifg = colors.orange      , guibg = nil , gui = NONE            , guisp = nil }
@@ -224,7 +224,7 @@ local function theme(colors)
     hi.TSPunctDelimiter     = { guifg = colors.grey_light  , guibg = nil , gui = NONE            , guisp = nil }
     hi.TSPunctBracket       = { guifg = colors.blue        , guibg = nil , gui = NONE            , guisp = nil }
     hi.TSPunctSpecial       = { guifg = colors.blue_gruv   , guibg = nil , gui = NONE            , guisp = nil }
-    hi.TSRepeat             = { guifg = colors.orange      , guibg = nil , gui = NONE            , guisp = nil }
+    hi.TSRepeat             = { guifg = colors.fg_light    , guibg = nil , gui = NONE            , guisp = nil }
     hi.TSString             = { guifg = colors.green_light , guibg = nil , gui = NONE            , guisp = nil }
     hi.TSStringRegex        = { guifg = colors.green       , guibg = nil , gui = NONE            , guisp = nil }
     hi.TSStringEscape       = { guifg = colors.green_gruv  , guibg = nil , gui = NONE            , guisp = nil }
