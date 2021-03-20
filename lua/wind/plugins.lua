@@ -59,6 +59,8 @@ Plug {'glepnir/lspsaga.nvim' , branch = 'main' , config = "lspsaga"}
 -- }}}
 --
 -- Telescope:{{{
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
 Plug {'nvim-telescope/telescope.nvim', config = 'telescope'}
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'nvim-telescope/telescope-github.nvim'
