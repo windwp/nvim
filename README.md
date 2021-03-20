@@ -30,7 +30,7 @@ Wind.load_theme 'gruvbox'
 ```
 ## Plug
 
-I use paq and create a function Plug so I can use it like (vim-plug)
+I use [Paq](https://github.com/savq/paq-nvim) and create a function Plug so I can use it like (vim-plug)
 with Plug you can customize it to load config from lua or vim
 
 ``` lua
