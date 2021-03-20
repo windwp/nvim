@@ -72,8 +72,6 @@ local function load_options()
     ruler          = false;
     list           = true;
     showtabline    = 2;
-    winwidth       = 30;
-    winminwidth    = 10;
     pumheight      = 15;
     helpheight     = 12;
     previewheight  = 12;
