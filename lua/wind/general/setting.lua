@@ -10,7 +10,7 @@ local function bind_option(options)
 end
 
 local function load_options()
-  local global_local = {
+  local options = {
     termguicolors  = true;
     mouse          = "nv";
     errorbells     = true;
@@ -84,7 +84,6 @@ local function load_options()
     laststatus     = 2;
     display        = "lastline";
     showbreak      = "↳  ";
-    -- colorcolumn    = "80";
     listchars      = "tab:………,nbsp:░,extends:»,precedes:«,trail:·";
     pumblend       = 10;
     winblend       = 10;
@@ -108,8 +107,7 @@ local function load_options()
     relativenumber = true;
     foldenable     = true;
     signcolumn     = "yes";
-    conceallevel   = 3;
-    -- concealcursor  = "niv";
+    conceallevel   = 2;
   }
 
   if Wind.is_mac then
@@ -128,7 +126,7 @@ local function load_options()
     vim.g.python_host_prog = '/usr/bin/python'
     vim.g.python3_host_prog = '/usr/local/bin/python3'
   end
-  for name, value in pairs(global_local) do
+  for name, value in pairs(options) do
     vim.o[name] = value
   end
   bind_option(bw_local)

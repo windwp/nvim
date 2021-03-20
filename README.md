@@ -1,6 +1,6 @@
 ## NEOVIM Config - Windvim
 
-![demo](https://i.imgur.com/APKMx0f.png)
+![demo](https://i.imgur.com/T8Sj1uS.png)
 
 ## Install
 ``` bash
@@ -46,10 +46,17 @@ Plug {'lambdalisue/fern.vim' , config = 'fern.vim'}
 
 ```
 Plug can lazy load with filetype(ft) and command(on).
-and I don't need to rename Plug to pag or use :)
+and I don't need to rename Plug to `pag` or `use` :)
 
+All plugins config is store on folder /plug/.vim and /lua/wind/plug/.lua
+
+If you are develop or test config you can run command `:WindDev`.
+It will enable dev mode and all import module is auto reload.
+on normal mode it use require to get a cache version of lua.
 
 ## Thanks
 
-[habamax](https://github.com/habamax/.vim/)
-[tjdevries](https://github.com/tjdevries)
+* [habamax](https://github.com/habamax/)
+* [tjdevries](https://github.com/tjdevries)
+* [glepnir](https://github.com/glepnir)
+
