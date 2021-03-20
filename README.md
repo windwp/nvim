@@ -13,21 +13,6 @@
 * [Telescope](https://github.com/nvim-telescope/telescope.nvim)
 
 
-## LSP
-
-default It load some lsp server lua, jsonls, yamls.
-
-Another lsp can load when you open project and run script with my plugin
-[project-config](https://github.com/windwp/nvim-projectconfig)
-
-``` lua
-
-Wind.load_lsp {'tsserver', 'efm'}
-Wind.load_lsp 'gopls'
-
-Wind.load_theme 'gruvbox'
-
-```
 ## Plug
 
 I use [Paq](https://github.com/savq/paq-nvim) and create a function Plug so I can use it like (vim-plug)
@@ -54,6 +39,22 @@ If you are develop or test config you can run command `:WindDev`.
 It will enable dev mode and all import module is auto reload.
 on normal mode it use require to get a cache version of lua.
 
+
+## LSP
+
+default It load some lsp server lua, jsonls, yamls.
+
+Another lsp can load when you open project and run script with my plugin
+[project-config](https://github.com/windwp/nvim-projectconfig)
+
+``` lua
+
+Wind.load_lsp {'tsserver', 'efm'}
+Wind.load_lsp 'gopls'
+
+Wind.load_theme 'gruvbox'
+
+```
 ## Thanks
 
 * [habamax](https://github.com/habamax/)
