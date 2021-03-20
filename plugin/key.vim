@@ -26,10 +26,10 @@ inoremap <A-k> <C-\><C-N><C-w>k
 inoremap <A-l> <C-\><C-N><C-w>l
 tnoremap <esc><esc> <C-\><C-N>
 
-nnoremap <silent><expr> k v:count == 0 ? 'gk' : 'k'
-nnoremap <silent><expr> j v:count == 0 ? 'gj' : 'j'
-xnoremap <silent><expr> k v:count == 0 ? 'gk' : 'k'
-xnoremap <silent><expr> j v:count == 0 ? 'gj' : 'j'
+" nnoremap <silent><expr> k v:count == 0 ? 'gk' : 'k'
+" nnoremap <silent><expr> j v:count == 0 ? 'gj' : 'j'
+" xnoremap <silent><expr> k v:count == 0 ? 'gk' : 'k'
+" xnoremap <silent><expr> j v:count == 0 ? 'gj' : 'j'
 " nnoremap 0 gg
 onoremap H ^
 nnoremap H ^

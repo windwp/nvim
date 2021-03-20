@@ -15,14 +15,14 @@
 
 ## LSP
 
-default It load some lsp server lua,jsonls ,yamls.
+default It load some lsp server lua, jsonls, yamls.
 
 Another lsp can load when you open project and run script with my plugin
 [project-config](https://github.com/windwp/nvim-projectconfig)
 
 ``` lua
 
-Wind.load_lsp {'tsserver','efm'}
+Wind.load_lsp {'tsserver', 'efm'}
 Wind.load_lsp 'gopls'
 
 Wind.load_theme 'gruvbox'

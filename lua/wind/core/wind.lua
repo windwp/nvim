@@ -83,16 +83,16 @@ _G.import = function (path)
   if string.match(path, '%.vim$') then
     local err, detail = pcall(M.import_vim, path)
     if not err then
-      print("Import vim error " .. path)
-      print(vim.inspect(detail))
+      print("Import vim error: " .. path)
+      vim.api.nvim_err_writeln(vim.inspect(detail))
     end
     return
   end
   if string.match(path, '%.lua$') then
     local err, detail = pcall(M.import_lua, path)
     if not err then
-      print("Import lua error " .. path)
-      print(vim.inspect(detail))
+      print("Import lua error: " .. path)
+      vim.api.nvim_err_writeln(vim.inspect(detail))
     end
     return
   end
@@ -105,8 +105,8 @@ _G.import = function (path)
     if check then
       return detail
     else
-      print('Import module error :' .. path)
-      print(detail)
+      print('Import module error: ' .. path)
+      vim.api.nvim_err_writeln(detail)
     end
   end
 end

@@ -1,7 +1,6 @@
 -- vim: foldmethod=marker  sw=2 formatoptions-=o foldlevel=0
 
-if vim.g.wind_use_plugin == 0 then
-  return end
+if vim.g.wind_use_plugin == 0 then return end
 
 local plug = import('core.plug')
 local Plug = plug.Plug
