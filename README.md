@@ -31,18 +31,18 @@ Plug {'lambdalisue/fern.vim' , config = 'fern.vim'}
 
 ```
 Plug can lazy load with filetype(ft) and command(on).
-and I don't need to rename Plug to `pag` or `use` :)
+
+I don't need to rename Plug to `pag` or `use` :)
 
 All plugins config is store on folder /plug/.vim and /lua/wind/plug/.lua
 
 If you are develop or test config you can run command `:WindDev`.
 It will enable dev mode and all import module is auto reload.
-on normal mode it use require to get a cache version of lua.
 
 
 ## LSP
 
-default It load some lsp server lua, jsonls, yamls.
+by default it load some lsp server lua, jsonls, yamls.
 
 Another lsp can load when you open project and run script with my plugin
 [project-config](https://github.com/windwp/nvim-projectconfig)
