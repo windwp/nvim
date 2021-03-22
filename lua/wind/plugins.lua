@@ -82,7 +82,6 @@ Plug {'windwp/nvim-ts-autotag', cond = use_ts}
 
 Plug 'windwp/wind-colors'
 Plug {'morhetz/gruvbox', opt = false}
-
 -- }}}
 
 -- File: {{{

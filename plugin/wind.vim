@@ -69,6 +69,10 @@ endfunction
 " auto close quick fix first
 " lol neovim need to make it default just kidding :)
 function! wind#SuperQuit() abort
+    if match(expand("%"), "^octo\:\/")>-1
+        execute ":bd"
+        return
+    endif
     if match(expand("%"), "^fugitive\:\/\/")>-1 || match(expand("%"), "COMMIT_EDITMSG$")>-1
         call wind#QfClose()
         execute ":bd"
