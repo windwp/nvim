@@ -1,3 +1,4 @@
+
 -- vim: foldmethod=marker  sw=2 formatoptions-=o foldlevel=0
 
 if vim.g.wind_use_plugin == 0 then return end
@@ -30,7 +31,8 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'mbbill/undotree'                 --" undo tree
 Plug 'djoshea/vim-autoread'            --" auto update after save outside vim
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
+-- Plug 'tpope/vim-surround'
+Plug {'machakann/vim-sandwich',}
 Plug 'tpope/vim-repeat'
 Plug 'terryma/vim-expand-region'
 Plug 'obxhdx/vim-auto-highlight'       --" highlight current world
@@ -78,8 +80,8 @@ Plug {'windwp/nvim-ts-autotag', cond = use_ts}
 
 -- Theme: {{{
 
-Plug 'morhetz/gruvbox'
-Plug 'franbach/miramare'
+Plug 'windwp/wind-colors'
+Plug {'morhetz/gruvbox', opt = false}
 
 -- }}}
 
@@ -117,10 +119,11 @@ Plug 'norcalli/nvim-colorizer.lua'
 
 -- toggle between true or false
 Plug 'AndrewRadev/switch.vim'
-Plug {'voldikss/vim-floaterm', config = 'vim-floaterm.vim'}
+Plug {'voldikss/vim-floaterm', before = 'vim-floaterm.vim'}
 Plug 'windwp/vim-floaterm-repl'
-Plug {'mg979/vim-visual-multi', config = 'vim-visual-multi.vim'}
-Plug {'skywind3000/asyncrun.vim', on = 'AsyncRun'}
+Plug {'mg979/vim-visual-multi', before = 'vim-visual-multi.vim'}
+Plug {'skywind3000/asyncrun.vim' }
+Plug {'pwntester/octo.nvim' , config = 'octo' , on = "Octo"}
 -- Plug {'dstein64/vim-startuptime' }
 
 -- }}}
@@ -129,4 +132,3 @@ Plug {'skywind3000/asyncrun.vim', on = 'AsyncRun'}
 plug.load_config()
 
 Wind.load_plug('_end')
-

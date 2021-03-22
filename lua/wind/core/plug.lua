@@ -1,8 +1,13 @@
 local paq = require'paq-nvim'.paq
 
+-- default config it will load after packadd
 local configs = {}
 
-local pack_lists = {}
+-- some vim stuff need to load config before packadd
+local configs_before = {}
+
+-- list back
+local packs = {}
 
 local M={}
 
@@ -39,11 +44,21 @@ M.Plug = function(opts)
   if opts.cond ~= nil then
     opts.opt = true
     if opts.cond == true then
-      table.insert(pack_lists, plugin)
+      table.insert(packs, plugin)
     else
     -- some config will nerver load here
       opts.config = false
     end
+  end
+
+  -- force all plugin is option except the opt = false
+  if opts.opt == nil then
+    opts.opt = true
+    table.insert(packs, plugin)
+  end
+
+  if opts.before then
+    table.insert(configs_before, opts.before)
   end
 
   if opts.config then
@@ -55,9 +70,15 @@ M.Plug = function(opts)
 end
 
 M.load_config=function()
-  for _, plugin in pairs(pack_lists) do
+
+  for _, value in pairs(configs_before) do
+    Wind.load_plug(value)
+  end
+
+  for _, plugin in pairs(packs) do
     vim.cmd("packadd ".. plugin)
   end
+
   for _, value in pairs(configs) do
     Wind.load_plug(value)
   end
