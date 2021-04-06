@@ -10,20 +10,10 @@ local Plug = plug.Plug
 -- some config for plugin if it use with packadd
 Wind.load_plug('_start')
 
-
-
--- Git: {{{
-Plug 'airblade/vim-gitgutter'
-Plug {'tpope/vim-fugitive'      , config = 'gitopen.vim'}
-Plug {'rhysd/git-messenger.vim' , on = 'GitMessenger'}
-Plug {'junegunn/gv.vim'         , on = 'GV' ,}
-Plug 'rhysd/conflict-marker.vim'
-
--- }}}
-
 -- Basic: {{{
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'mhinz/vim-grepper'               --Handle multi-file find and replace. display all grep result to a list in vim
 
 Plug 'godlygeek/tabular'               --" Markdown Tables
 Plug {'liuchengxu/vim-which-key'  , config = 'which-key.vim'}
@@ -31,7 +21,6 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'mbbill/undotree'                 --" undo tree
 Plug 'djoshea/vim-autoread'            --" auto update after save outside vim
 Plug 'tpope/vim-commentary'
--- Plug 'tpope/vim-surround'
 Plug {'machakann/vim-sandwich',}
 Plug 'tpope/vim-repeat'
 Plug 'terryma/vim-expand-region'
@@ -39,14 +28,21 @@ Plug 'obxhdx/vim-auto-highlight'       --" highlight current world
 
 Plug {'lukas-reineke/indent-blankline.nvim', branch = 'lua', cond = vim.g.wind_use_indent == 1, config = "indent-blankline"}
 
--- Find and replace
-Plug {'brooth/far.vim', config = 'far.vim', on='Far'}
 -- better match pairs and it can disable on insert mode
 Plug {'andymass/vim-matchup', config = 'matchup'}
 -- hight light character on ft key
 Plug {'hrsh7th/vim-eft', config = 'eft'}
 
 ---}}}
+
+
+-- Git: {{{
+Plug {'tpope/vim-fugitive'      , config = 'gitopen.vim'}
+Plug {'rhysd/git-messenger.vim' , on = 'GitMessenger'}
+Plug {'junegunn/gv.vim'         , on = 'GV' ,}
+Plug 'rhysd/conflict-marker.vim'
+Plug {'lewis6991/gitsigns.nvim', config = 'gitsigns'}
+-- }}}
 
 -- Lsp: {{{
 
@@ -61,8 +57,6 @@ Plug {'glepnir/lspsaga.nvim' , branch = 'main' , config = "lspsaga"}
 -- }}}
 --
 -- Telescope:{{{
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
 Plug {'nvim-telescope/telescope.nvim', config = 'telescope'}
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'nvim-telescope/telescope-github.nvim'
@@ -113,6 +107,7 @@ Plug {'fatih/vim-go'                 , ft = 'go'}
 Plug 'phaazon/hop.nvim'
 Plug 'windwp/nvim-autopairs'
 Plug 'windwp/nvim-autospace'
+Plug 'windwp/nvim-spectre'
 Plug {'windwp/nvim-projectconfig' , config = 'project-config'}
 Plug 'norcalli/nvim-colorizer.lua'
 
