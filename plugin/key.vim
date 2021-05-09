@@ -165,11 +165,6 @@ nnoremap <nowait> <silent>gf :TabCustomOpen <c-r>=expand("<cfile>")<CR><CR>
 let g:tmux_navigator_no_mappings = 1
 let g:tmux_navigator_disable_when_zoomed = 1
 
-  nnoremap <silent> <A-h> :TmuxNavigateLeft<cr>
-  nnoremap <silent> <A-j> :TmuxNavigateDown<cr>
-  nnoremap <silent> <A-k> :TmuxNavigateUp<cr>
-  nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
-  nnoremap <silent> <A-\> :TmuxNavigatePrevious<cr>
 nmap <leader>s :HopChar2<cr>
 
 " Execute Vimscript {{{

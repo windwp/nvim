@@ -6,6 +6,8 @@ local configs = {}
 -- some vim stuff need to load config before packadd
 local configs_before = {}
 
+-- lazy pack it load use load_pack
+local lazy_packs = {}
 -- list back
 local packs = {}
 
@@ -22,6 +24,18 @@ M.Plug = function(opts)
     end
 
     local add_to_rtp = true
+
+    if opts.lazy == true then
+        -- that option mean you need to load plugin by function load_pack
+        opts.name = plugin_name
+        table.insert(lazy_packs, vim.deepcopy(opts))
+        opts.opt = true
+        add_to_rtp = false
+        opts.lazy = false
+        opts.config = false
+        opts.on = false
+    end
+
     if opts.on then
         -- still have some problem here with argument on command
         -- when you type it first time it will not understand argument
@@ -52,6 +66,7 @@ M.Plug = function(opts)
     end
 
     if opts.cond ~= nil then
+        -- opts.opt = true
         if opts.cond == true then
             table.insert(packs, plugin_name)
         else
@@ -59,6 +74,7 @@ M.Plug = function(opts)
             add_to_rtp = false
         end
     end
+
 
     -- force all plugin is option except the opt = false
     -- paq will add this to folder start but i don't like it because
@@ -75,15 +91,15 @@ M.Plug = function(opts)
 
     -- loading another config
     if opts.config then
-        table.insert(configs,opts.config)
+        table.insert(configs, opts.config)
     end
 
+    -- print(plugin_name)
     paq(opts)
-
 end
 
-M.load_config=function()
 
+M.load_config = function()
   for _, value in pairs(configs_before) do
     Wind.load_plug(value)
   end
@@ -102,6 +118,33 @@ M.load_config=function()
   end
 end
 
+M.load_pack = function(name)
+    for pos, v in pairs(lazy_packs) do
+        if v.name == name then
+            local ok, msg = pcall(vim.cmd, "packadd " .. name)
+            if not ok then
+                print('load pack error: ' .. name)
+                print(msg)
+            end
+            if v.config then
+                Wind.load_plug(v.config)
+            end
+            table.remove(lazy_packs, pos)
+            return
+        end
+    end
+    print("We can't not find that pack " .. name)
+end
 
+--sorry paq it is a dirty thing but i keep typing
+--Plug in my command and my mind
+vim.api.nvim_exec([[
+command! PlugInstall  lua require('paq-nvim').install()
+command! PlugUpdate   lua require('paq-nvim').update()
+command! PlugClean    lua require('paq-nvim').clean()
+command! PlugLogOpen  lua require('paq-nvim').log_open()
+command! PlugLogClean lua require('paq-nvim').log_clean()
+]],false)
 
+Wind.load_pack = M.load_pack
 return M

@@ -19,9 +19,37 @@ keymap._execute = function(id)
   return keymap._store[id]()
 end
 
+local parse_wk_desc = function (desc, lhs)
+    if desc then
+        local first_key,second_key,third_key
+        if string.match(lhs, '<leader>') then
+            first_key = "<leader>"
+            second_key = lhs:sub(9, 9)
+            third_key = lhs:sub(10, 10)
+        else
+            first_key = lhs:sub(1, 1)
+            second_key = lhs:sub(2, 2)
+            third_key = lhs:sub(3, 3)
+        end
+
+        if keymap.which_key[first_key] == nil and #first_key > 0 then
+            keymap.which_key[first_key] = {}
+        end
+        local current = keymap.which_key[first_key]
+        if third_key ~= nil and #third_key > 0 then
+            if current[second_key] == nil then
+                current[second_key] = {}
+            end
+            current[second_key][third_key] =desc
+        else
+            current[second_key]= desc
+        end
+  end
+end
+
 local make_mapper = function(mode, defaults, opts)
   if Wind.is_dev then
-    opts.silent=false
+      opts.silent = false
   end
   local args, map_args = {}, {}
   for k, v in pairs(opts) do
@@ -34,15 +62,11 @@ local make_mapper = function(mode, defaults, opts)
 
   local lhs = opts.lhs or args[1]
   local rhs = opts.rhs or args[2]
+  local desc = map_args.desc or args[3]
   local map_opts = vim.tbl_extend("force", defaults, map_args)
+  map_opts.desc = nil
 
-  if string.match(lhs, '<leader>') and map_args.description ~= nil then
-    if rhs:sub(10,10) then
-      keymap.which_key[rhs:sub(9,9)][rhs.sub(10, 10)] = map_args.description
-    else
-      keymap.which_key[rhs:sub(9,9)]= map_args.description
-    end
-  end
+  parse_wk_desc(desc,lhs)
 
   local mapping
   if type(rhs) == 'string' then
@@ -237,8 +261,9 @@ function keymap.tnoremap(opts)
 end
 
 
--- https://github.com/neovim/neovim/blob/b535575acdb037c35a9b688bc2d8adc2f3dece8d/src/nvim/keymap.h#L225
--- lua vim.fn.feedkeys(string.format('%c%c%cwincmdv', 0x80, 253, 83))
+--- Helper function for ':tnoremap'
+--@see |vim.keymap.nmap|
+---
 function keymap.t(cmd)
   return vim.api.nvim_replace_termcodes(cmd, true, false, true)
 end

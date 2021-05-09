@@ -12,3 +12,15 @@ import('general.autocmd').add_autocmd_color('whitespace',function ()
   vim.cmd[[match ExtraWhitespace /\s\+$/]]
 end)
 
+
+
+require('Navigator').setup({
+    auto_save = 'current',
+    disable_on_zoom = true
+})
+
+
+require('spectre').setup({
+    line_sep_start = '┌--------------------------------------------------------',
+    line_sep       = '└--------------------------------------------------------',
+})

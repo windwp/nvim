@@ -3,6 +3,8 @@ local M = {}
 _G.Wind = _G.Wind or M
 M.is_dev = false
 M.root='wind'
+M.state={}
+
 
 local home    = os.getenv('HOME')
 local path_sep = M.is_windows and '\\' or '/'

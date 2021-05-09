@@ -14,10 +14,9 @@ Wind.load_plug('_start')
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'numToStr/Navigator.nvim'
 
 Plug 'godlygeek/tabular'               --" Markdown Tables
-Plug {'liuchengxu/vim-which-key'  , config = 'which-key.vim'}
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'mbbill/undotree'                 --" undo tree
 Plug 'djoshea/vim-autoread'            --" auto update after save outside vim
 Plug 'tpope/vim-commentary'
@@ -90,11 +89,12 @@ Plug {'lambdalisue/glyph-palette.vim'     , cond = use_icon}
 -- }}}
 
 
--- Lightline {{{
-Plug {'itchyny/lightline.vim', config = 'lightline.vim'}
-Plug {'mengelbrecht/lightline-bufferline', config = 'light-bufferline', cond = vim.g.wind_use_buffline == 1}
+-- statusline {{{
+
+Plug {'windwp/windline.nvim', config = 'windline'}
 Plug {'vimpostor/vim-tpipeline', cond = vim.g.wind_tmux_line == 1}
 --}}}
+
 
 -- Filetype {{{
 Plug {'neoclide/jsonc.vim'           , ft = 'json'}
@@ -118,6 +118,9 @@ Plug 'windwp/vim-floaterm-repl'
 Plug {'mg979/vim-visual-multi', before = 'vim-visual-multi.vim'}
 Plug {'skywind3000/asyncrun.vim' }
 Plug {'pwntester/octo.nvim' , config = 'octo' , on = "Octo"}
+Plug {'folke/lsp-trouble.nvim', config = 'lsp-trouble' , on = 'LspTroubleOpen'}
+Plug {'sindrets/diffview.nvim', on = 'DiffviewOpen'}
+Plug {'folke/which-key.nvim', config = 'which-key'}
 -- Plug {'dstein64/vim-startuptime' }
 
 -- }}}

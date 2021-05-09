@@ -67,7 +67,6 @@ endfunction
 
 " save and quit use it with 'set confim' setting
 " auto close quick fix first
-" lol neovim need to make it default just kidding :)
 function! wind#SuperQuit() abort
     if match(expand("%"), "^octo\:\/")>-1
         execute ":bd"
@@ -131,51 +130,6 @@ endfunction
 function! wind#QfToggle()
     if wind#QfClose() == 1| return| end
     copen
-endfunction
-
-
-function! wind#GetVisualSelect() abort
-    let [line_start, column_start] = getpos("'<")[1:2]
-    let [line_end, column_end] = getpos("'>")[1:2]
-    let lines = getline(line_start, line_end)
-    if len(lines) == 0
-        return ''
-    endif
-    let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
-    let lines[0] = lines[0][column_start - 1:]
-    let query=join(lines,"\n")
-    return query
-endfunction
-
-let g:grepper={}
-" let g:grepper.tools=["rg"]
-let g:qf_replace_query = ''
-" press first time and update query to match
-" press second time to excute check qf is open
-" press dd in quick fix to remove that selection item
-function! wind#ReplaceViualSelect() abort
-    " check qf is open
-    let l:is_qf_open=0
-    for i in range(1, winnr('$'))
-        let bnum = winbufnr(i)
-        if getbufvar(bnum, '&buftype') == 'quickfix'
-            let l:is_qf_open=1
-            break
-        endif
-    endfor
-    if l:is_qf_open==0
-        let query = wind#GetVisualSelect()
-        execute "GrepperRg \"".query."\""
-        let g:qf_replace_query = substitute(query,'/','\\\/',"g")
-        echom g:qf_replace_query
-    endif
-    if l:is_qf_open==1 && len(g:qf_replace_query)>0
-        let replace = input("Replace Text: ")
-        if len(replace)>0
-            execute "cfdo %s/".g:qf_replace_query."/".replace."/g \| update"
-        endif
-        let g:qf_replace_query=''
-    endif
 endfunction
 
 
