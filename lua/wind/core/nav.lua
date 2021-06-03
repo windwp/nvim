@@ -84,21 +84,17 @@ function M.get_window_id(filename)
   end
 end
 
--- TODO
+M.tabJumps={}
+
+-- this function help jump to an exists buffer visible
 -- the problem of vim is navigate between buffer it is different with vs code
 -- if you open 2 buffer in 2 window. You use gd to navigate to another
 -- function in another buffer it will change current buffer and you have 2
 -- buffer display same file
--- I want it similar to vs code navigate back and jump but it can't
--- <c-o> work well with same window  but not working with too many
+-- <c-o> work well with same window  but not working with different
 -- tab open (Vim have different jumplists window and tab) it always change
 -- current buffer and not jump to an exist buffer
--- I save it to 1 global variable for navigate back but some
--- time it is not working maybe I need to change my flow to 1 window
-
-M.tabJumps={}
-
-function M.tab_open(arr)
+function M.wind_open(arr)
   if type(arr) == 'string' then
        arr = {arr}
   end
@@ -211,7 +207,7 @@ M.go_back = function()
 end
 
 
-function M.open(url)
+function M.sys_open(url)
   if Wind.is_linux then
     vim.cmd("silent !xdg-open '".. url .."'")
   else
@@ -234,10 +230,10 @@ function M.open_or_search (isVisual)
       url = "https://google.com/search?q="..line
     end
   end
-  M.open(url)
+  M.sys_open(url)
 end
 
-Wind.tab_open = M.tab_open
+Wind.wind_open = M.wind_open
 Wind.go_back = M.go_back
 
 return M

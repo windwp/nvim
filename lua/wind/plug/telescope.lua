@@ -12,7 +12,7 @@ require'telescope'.load_extension('gh')
 require'telescope'.load_extension('media_files')
 
 local nnoremap = import'core.keymap'.nnoremap
-local tab_open = import'core.nav'.tab_open
+local wind_open = import'core.nav'.wind_open
 -- require('telescope').load_extension('fzy_native')
 -- Global remapping
 ------------------------------
@@ -75,12 +75,12 @@ local k_mappings= function(prompt_bufnr)
             -- mark current cursor open to jumplist
             vim.api.nvim_command[[execute "normal! m` "]]
             if row and col then
-                tab_open({filename,row,col})
+                wind_open({filename,row,col})
                 vim.fn.cursor(row,col)
                 -- center position
                 vim.api.nvim_feedkeys('zz','n',true)
             else
-                tab_open({filename,row,col})
+                wind_open({filename,row,col})
 
             end
         end
@@ -112,7 +112,7 @@ function M.goto_definition(opts)
           if file ~=nil then
             -- mark current cursor open to jumplist
             vim.api.nvim_command[[execute "normal! m` "]]
-            tab_open({file , line + 1 , character + 1})
+            wind_open({file , line + 1 , character + 1})
             vim.fn.cursor(line + 1 , character + 1)
             vim.api.nvim_feedkeys('zz','n',true)
             return

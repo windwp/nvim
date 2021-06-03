@@ -165,7 +165,7 @@ local function  load_command()
   vim.api.nvim_exec([[
   filetype plugin indent on
   syntax on
-  command! -nargs=* TabCustomOpen call v:lua.import('core.nav').tab_open(<f-args>)
+  command! -nargs=* TabCustomOpen call v:lua.import('core.nav').wind_open(<f-args>)
   command! -nargs=* WindDev lua Wind.is_dev=true
   " enable italic in tmux
   set t_ZH=^[[3m

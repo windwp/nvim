@@ -12,6 +12,7 @@ utils.set_vim_global({
   wind_use_treesitter   = 1,
   wind_use_icon         = 1,
   wind_use_buffline     = 1,
+  wind_use_statusline   = 1,
   wind_use_dap          = 0,
   wind_lsp_mode         = 'lsp',
   wind_tmux_line        = 1,

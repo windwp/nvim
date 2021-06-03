@@ -45,17 +45,6 @@ local default= {
         show_in_active = true
     }
 
-    local spectre = {
-        filetypes = {'spectre_panel' },
-        active = {
-            {' ಠ_ಠ ', {'white', 'black'}} ,
-            {helper.separators.slant_right, {'black', 'MiddleBg'}},
-            comps.vim_equal,
-            {helper.separators.slant_right, {'MiddleBg', 'black'}},
-            {' Spectre ',  {'white', 'black', 'bold'} },
-        },
-        show_in_active = true,
-    }
 
 
     local terminal = {
@@ -120,7 +109,6 @@ windline.setup({
 
     statuslines={
         default,
-        spectre,
         terminal,
         explorer,
     }

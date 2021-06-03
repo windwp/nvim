@@ -1,4 +1,3 @@
-
 -- vim: foldmethod=marker  sw=2 formatoptions-=o foldlevel=0
 
 if vim.g.wind_use_plugin == 0 then return end
@@ -107,7 +106,7 @@ Plug {'fatih/vim-go'                 , ft = 'go'}
 Plug 'phaazon/hop.nvim'
 Plug 'windwp/nvim-autopairs'
 Plug 'windwp/nvim-autospace'
-Plug 'windwp/nvim-spectre'
+Plug {'windwp/nvim-spectre', config = 'spectre'}
 Plug {'windwp/nvim-projectconfig' , config = 'project-config'}
 Plug 'norcalli/nvim-colorizer.lua'
 
