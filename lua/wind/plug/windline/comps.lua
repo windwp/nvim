@@ -1,4 +1,4 @@
-local helper = require('wlsample.helpers')
+local helper = require('windline.helpers')
 local api = vim.api
 local sep = helper.separators
 
