@@ -1,7 +1,7 @@
 
 local windline = require('windline')
 local comps=import('plug.windline.comps')
-local helper = require('wlsample.helpers')
+local helper = require('windline.helpers')
 
 local default= {
         filetypes = {'default'},
