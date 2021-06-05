@@ -1,4 +1,7 @@
 local helper = require('windline.helpers')
+local git_comps = require('windline.components.git')
+local basic_comps = require('windline.components.basic')
+local lsp_comps = require('windline.components.lsp')
 local api = vim.api
 local sep = helper.separators
 
@@ -12,29 +15,7 @@ end
 
 local state = _G.WindLine.state
 
-local get_git_dir = function ()
-    if(vim.g.wind_use_plugin == 1) then
-        return vim.call('fugitive#head')
-    end
-    return ''
-end
-
-local check_lsp_status = function()
-    if state.comp.lsp == nil and is_lsp() then
-        local error, warning  = helper.get_diagnostics_count(0)
-        state.comp.error = error
-        state.comp.warning = warning
-        if error > 0 or warning > 0  then
-            state.comp.lsp = 1
-        else
-            state.comp.lsp = 2
-        end
-    else
-        state.comp.error = 0
-        state.comp.warning=0
-    end
-    return state.comp.lsp ~= nil
-end
+local check_lsp_status = lsp_comps.check_lsp({func_check = is_lsp})
 
 local hl_list = {
     Black    = {'white'      , 'black'      } ,
@@ -45,19 +26,19 @@ local hl_list = {
 
 local comps = {}
 
-comps.vim_equal             = {"%=", ''}
+comps.divider             = {basic_comps.divider, ''}
 comps.space                 = {' ', ''}
-comps.line_col              = {[[ %3l:%-2c ]],hl_list.Black }
-comps.progress              = {[[%3p%% ]], hl_list.Black}
+comps.line_col              = {basic_comps.line_col,hl_list.Black }
+comps.progress              = {basic_comps.progress, hl_list.Black}
 comps.bg                    = {" ", 'StatusLine'}
-comps.file_name_inactive    = {"%f", hl_list.Inactive}
-comps.line_col_inactive     = {[[ %3l:%-2c ]], hl_list.Inactive}
-comps.progress_inactive     = {[[%3p%% ]], hl_list.Inactive}
+comps.file_name_inactive    = {basic_comps.full_file_name, hl_list.Inactive}
+comps.line_col_inactive     = {basic_comps.line_col, hl_list.Inactive}
+comps.progress_inactive     = {basic_comps.progress, hl_list.Inactive}
 
 comps.sep_second_left       = {sep.slant_right_thin, ''}
 comps.sep_second_left_black = {sep.slant_right_thin, hl_list.Black}
 
-comps.file_modified_inactive = {"%m", hl_list.Black}
+comps.file_modified_inactive = {basic_comps.file_modified, hl_list.Black}
 
 comps.vi_mode= {
     name='vi_mode',
@@ -110,8 +91,9 @@ comps.alert_mode = {
             end
         end
         if text == '' then
+            local sep_ani = Wind.state.animation and '' or sep.slant_right
             return {
-                -- {sep.slant_right, 'beforeEmpty'},
+                {sep_ani, 'beforeEmpty'},
                 {function()
                     if vim.bo.modified or vim.bo.modifiable == false then
                         return ' ⬤ '
@@ -130,7 +112,7 @@ comps.alert_mode = {
                 {sep.slant_right, 'afterEmpty'},
             }
         end
-        return {
+        reurn {
             {sep.slant_right, 'before'},
             {text, 'default'},
             {sep.slant_right, 'after'},
@@ -139,13 +121,9 @@ comps.alert_mode = {
 }
 
 comps.git_status = {
-    text = function ()
-        local txt =  get_git_dir()
-        if #txt > 1 then
-            return '  ' .. txt .. ' '
-        end
-        return ''
-    end,
+    text = git_comps.git_branch({
+        condition = function() return vim.g.wind_use_plugin == 1 end
+    }),
     hl_colors = hl_list.Left
 }
 
@@ -156,13 +134,17 @@ comps.file_name = {
 
         if string.match(fullpath, "^fugitive") ~= nil then
             name = name .. "[git]"
+            return {{name, 'git'}}
         end
         if name == '' then
             name = '[No Name]'
         end
-        return name..  ' '
+        return {{name ..  ' ', 'default'}}
     end,
-    hl_colors = hl_list.Left
+    hl_colors = {
+        default     = {'LeftFg' , 'LeftBg' } ,
+        git = {'red', 'LeftBg'}
+    }
 }
 
 comps.file_type = {
@@ -228,15 +210,15 @@ comps.lsp_diagnos = {
         if check_lsp_status() then
             return{
                 {sep.slant_left, 'sep_before'} ,
-                {string.format("  %s", state.comp.error or 0),'red'},
-                {string.format("  %s ", state.comp.warning or 0),'yellow'},
+                {string.format("  %s", lsp_comps.lsp_error()), 'red'},
+                {string.format("  %s ", lsp_comps.lsp_warning()), 'yellow'},
                 {sep.slant_right,'sep_after' },
             }
         end
         return {
             {
                 function ()
-                    local txt = get_git_dir()
+                    local txt = state.git_branch or ''
                     if #txt > 1 then
                         if check_lsp_status() then
                             return sep.slant_left
@@ -304,20 +286,6 @@ comps.terminal_mode =  {
     },
 }
 
--- comps.middle_comp = {
---     hl_colors = {
---             default = {'MiddleFg', 'MiddleBg'},
---             before = {'LeftBg', 'MiddleBg'}
---         } ,
---     text = function ()
---         return {
---             {sep.slant_right, 'before'},
---             {state.animation_text or ' '}
---         }
---     end,
--- }
-
-
 
 comps.wave_left={
     hl_colors = {
@@ -327,17 +295,23 @@ comps.wave_left={
         wave_blue4 = {'waveleft3', 'waveleft4'},
         wave_blue5 = {'waveleft4', 'waveleft5'},
         wave_blue6 = {'waveleft5', 'MiddleBg'},
+        default = {'LeftBg', 'MiddleBg'}
     },
     text = function()
+        if Wind.state.animation == true then
+            return {
+                {sep.slant_right .. '   ', 'wave_blue1'},
+                {sep.slant_right .. '   ', 'wave_blue2'},
+                {sep.slant_right .. '   ', 'wave_blue3'},
+                {sep.slant_right .. '   ', 'wave_blue4'},
+                {sep.slant_right .. '   ', 'wave_blue5'},
+                {sep.slant_right .. '   ', 'wave_blue6'},
+            }
+        end
         return {
-            {sep.slant_right .. ' ', 'wave_blue1'},
-            {sep.slant_right .. ' ', 'wave_blue2'},
-            {sep.slant_right .. ' ', 'wave_blue3'},
-            {sep.slant_right .. ' ', 'wave_blue4'},
-            {sep.slant_right .. ' ', 'wave_blue5'},
-            {sep.slant_right .. ' ', 'wave_blue6'},
+            {sep.slant_right , 'default'},
         }
-    end
+    end,
 }
 
 comps.wave_right={
@@ -348,16 +322,20 @@ comps.wave_right={
         wave_blue4 = { 'waveright3','waveright4',} ,
         wave_blue5 = { 'waveright4','waveright5',} ,
         wave_blue6 = { 'waveright5','black'  ,} ,
+        default = {'MiddleBg' , 'MiddleBg'   } ,
     },
     text = function()
-        return {
-            {sep.slant_right.. ' ' , 'wave_blue1'},
-            {sep.slant_right.. ' ' , 'wave_blue2'},
-            {sep.slant_right.. ' ' , 'wave_blue3'},
-            {sep.slant_right.. ' ' , 'wave_blue4'},
-            {sep.slant_right.. ' ' , 'wave_blue5'},
-            {sep.slant_right.. ' ' , 'wave_blue6'},
-        }
+        if Wind.state.animation == true then
+            return {
+                {sep.slant_right.. '   ' , 'wave_blue1'},
+                {sep.slant_right.. '   ' , 'wave_blue2'},
+                {sep.slant_right.. '   ' , 'wave_blue3'},
+                {sep.slant_right.. '   ' , 'wave_blue4'},
+                {sep.slant_right.. '   ' , 'wave_blue5'},
+                {sep.slant_right.. '' , 'wave_blue6'},
+            }
+        end
+        return ''
     end
 }
 return comps
