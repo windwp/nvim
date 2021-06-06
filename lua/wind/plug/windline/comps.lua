@@ -112,18 +112,15 @@ comps.alert_mode = {
                 {sep.slant_right, 'afterEmpty'},
             }
         end
-        reurn {
+        return {
             {sep.slant_right, 'before'},
             {text, 'default'},
             {sep.slant_right, 'after'},
         }
     end
 }
-
 comps.git_status = {
-    text = git_comps.git_branch({
-        condition = function() return vim.g.wind_use_plugin == 1 end
-    }),
+    text = git_comps.git_branch(),
     hl_colors = hl_list.Left
 }
 
@@ -210,16 +207,15 @@ comps.lsp_diagnos = {
         if check_lsp_status() then
             return{
                 {sep.slant_left, 'sep_before'} ,
-                {string.format("  %s", lsp_comps.lsp_error()), 'red'},
-                {string.format("  %s ", lsp_comps.lsp_warning()), 'yellow'},
+                {string.format("  %s", state.comp.lsp_error or 0), 'red'},
+                {string.format("  %s ", state.comp.lsp_warning or 0), 'yellow'},
                 {sep.slant_right,'sep_after' },
             }
         end
         return {
             {
                 function ()
-                    local txt = state.git_branch or ''
-                    if #txt > 1 then
+                    if git_comps.is_git() then
                         if check_lsp_status() then
                             return sep.slant_left
                         else
@@ -245,7 +241,7 @@ comps.explorer_name = {
     text = function(bufnr)
         if bufnr == nil then return '' end
         local bufname = vim.fn.expand(vim.fn.bufname(bufnr))
-        local _,_, bufnamemin = string.find(bufname,[[%/([^%/]*%/[^%/]*);%$$]])
+        local _,_, bufnamemin = string.find(bufname,[[%/([^%/]*%/[^%/]*);?%$$]])
         if bufnamemin ~= nil and #bufnamemin > 1 then return bufnamemin end
         return bufname
     end,
