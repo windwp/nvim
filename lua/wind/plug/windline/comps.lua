@@ -1,6 +1,7 @@
 local helper = require('windline.helpers')
 local git_comps = require('windline.components.git')
 local basic_comps = require('windline.components.basic')
+local vim_comps = require('windline.components.vim')
 local lsp_comps = require('windline.components.lsp')
 local api = vim.api
 local sep = helper.separators
@@ -43,11 +44,11 @@ comps.file_modified_inactive = {basic_comps.file_modified, hl_list.Black}
 comps.vi_mode= {
     name='vi_mode',
     hl_colors = {
-            Normal   = {'NormalFg', 'NormalBg'   } ,
-            Insert   = {'InsertFg', 'InsertBg'   } ,
-            Visual   = {'VisualFg', 'VisualBg'   } ,
-            Replace  = {'ReplaceFg', 'ReplaceBg' } ,
-            Command  = {'CommandFg', 'CommandBg' } ,
+            Normal   = {'white', 'black'   } ,
+            Insert   = {'white', 'blue_light'   } ,
+            Visual   = {'white', 'blue'   } ,
+            Replace  = {'black', 'green' } ,
+            Command  = {'white', 'red' } ,
         } ,
     text = function() return ' ' .. state.mode[1] .. ' ' end,
     hl = function (hl_data) return hl_data[state.mode[2]]
@@ -57,11 +58,11 @@ comps.vi_mode= {
 comps.vi_mode_sep =  {
     name='vi_mode_sep',
     hl_colors = {
-            Normal  = {'NormalBg', 'LeftBg'},
-            Insert  = {'InsertBg', 'LeftBg'},
-            Visual  = {'VisualBg', 'LeftBg'},
-            Replace = {'ReplaceBg', 'LeftBg'},
-            Command = {'CommandBg', 'LeftBg'},
+            Normal  = {'black', 'LeftBg'},
+            Insert  = {'blue_light', 'LeftBg'},
+            Visual  = {'blue', 'LeftBg'},
+            Replace = {'green', 'LeftBg'},
+            Command = {'red', 'LeftBg'},
         }
     ,
     text = function() return sep.slant_right end,
@@ -124,6 +125,27 @@ comps.git_status = {
     hl_colors = hl_list.Left
 }
 
+
+local search_count = vim_comps.search_count()
+comps.search_count={
+    hl_colors={
+        default = {'white', 'red'},
+        search = {'white', 'blue_light'},
+        sep_before = {'LeftBg', 'blue_light'},
+        sep_after = {'blue_light', 'LeftBg'}
+    },
+    text = function()
+        local count = search_count()
+        if count and #count > 1 then
+            return {
+                {sep.slant_right, 'sep_before'},
+                { count, 'search'},
+                {sep.slant_right,'sep_after'}
+            }
+        end
+        return nil
+    end
+}
 comps.file_name = {
     text = function ()
         local fullpath = vim.fn.expand('%:p')
@@ -169,7 +191,7 @@ comps.lsp_status = {
     hl_colors = {
         default = {'RightFg', 'RightBg'},
         red     = {'red', 'RightBg'},
-        sep     = {'RightBg', 'black'}
+        sep     = {'RightBg', 'black_light'}
     } ,
     text = function()
         return {
@@ -204,7 +226,8 @@ comps.lsp_diagnos = {
         sep_before = {'black'  , 'LeftBg' }
     },
     text = function ()
-        if check_lsp_status() then
+        local c_lsp_status = check_lsp_status()
+        if c_lsp_status then
             return{
                 {sep.slant_left, 'sep_before'} ,
                 {string.format("  %s", state.comp.lsp_error or 0), 'red'},
@@ -212,27 +235,10 @@ comps.lsp_diagnos = {
                 {sep.slant_right,'sep_after' },
             }
         end
-        return {
-            {
-                function ()
-                    if git_comps.is_git() then
-                        if check_lsp_status() then
-                            return sep.slant_left
-                        else
-                            return sep.slant_right_thin
-                        end
-                    end
-                    if check_lsp_status() then
-                        return 'ツ' .. sep.slant_left
-                    end
-                    return ''
-                end,
-                function(hl_data)
-                    if check_lsp_status() then return hl_data.lsp end
-                    return hl_data.default
-                end
-            }
-        }
+        if git_comps.is_git() then
+            return {{ sep.slant_right_thin, 'default'}}
+        end
+        return ''
     end,
 }
 
@@ -275,9 +281,9 @@ comps.terminal_mode =  {
         }
     end,
     hl_colors = {
-        sep     = {'CommandBg', 'InactiveBg'},
+        sep     = {'blue_light', 'InactiveBg'},
         Normal  = {'MiddleFg', 'MiddleBg'   } ,
-        Command = {'CommandFg', 'CommandBg' } ,
+        Command = {'black', 'blue_light' } ,
         empty   = {'white', 'black'},
     },
 }
