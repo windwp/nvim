@@ -1,6 +1,6 @@
 ## NEOVIM Config - Windvim
 
-![demo](https://i.imgur.com/C3mLK6I.png)
+![demo](https://i.imgur.com/Fr9uQO7.png)
 
 ## Install
 ``` bash
