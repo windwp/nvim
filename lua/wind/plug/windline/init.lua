@@ -1,6 +1,6 @@
 local windline = require('windline')
-local comps = import('plug.windline.comps')
 local helper = require('windline.helpers')
+local comps = import('plug.windline.comps')
 
 local default = {
     filetypes = { 'default' },
@@ -9,6 +9,7 @@ local default = {
         comps.vi_mode_sep,
         comps.git_status,
         comps.lsp_diagnos,
+        comps.search_count,
         comps.space,
         comps.file_name,
         comps.wave_left,
@@ -32,7 +33,7 @@ local default = {
 }
 
 local explorer = {
-    filetypes = { 'fern', 'NvimTree' },
+    filetypes = { 'fern', 'NvimTree' , 'lir'},
     active = {
         { '  ', { 'white', 'black' } },
         { helper.separators.slant_right, { 'black', 'MiddleBg' } },
@@ -48,6 +49,10 @@ local quickfix = {
     active = {
         { '🚦 Quickfix ', { 'white', 'black' } },
         { helper.separators.slant_right, { 'black', 'black_light' } },
+        {
+            function() return vim.fn.getqflist({title = 0}).title end,
+            {'cyan', 'black_light'}
+        },
         { ' Total : %L ', { 'cyan', 'black_light' } },
         { helper.separators.slant_right, { 'black_light', 'InactiveBg' } },
         { ' ', { 'InactiveFg', 'InactiveBg' } },
@@ -57,22 +62,6 @@ local quickfix = {
     },
     show_in_active = true,
 }
--- local trouble = {
---     filetypes = { 'Trouble' },
---     active = {
---         { '🚦 Trouble ', { 'white', 'black' } },
---         { helper.separators.slant_right, { 'black', 'black_light' } },
---         { '  10 ', { 'cyan', 'black_light' } },
---         { ' 0 ', { 'red', 'black_light' } },
---         { ' 0 ', { 'yellow', 'black_light' } },
---         { helper.separators.slant_right, { 'black_light', 'InactiveBg' } },
---         { ' ', { 'InactiveFg', 'InactiveBg' } },
---         comps.divider,
---         { helper.separators.slant_right, { 'InactiveBg', 'black' } },
---         {' 🚦 ',{'white', 'black'}}
---     },
---     show_in_active = true,
--- }
 
 local terminal = {
     filetypes = { 'toggleterm' },
@@ -89,22 +78,8 @@ local terminal = {
 }
 
 windline.setup({
-    themes = require('windline.themes.wind'),
+    theme = require('windline.themes.wind'),
     colors_name = function(colors)
-        colors.NormalFg = colors.white
-        colors.NormalBg = colors.black
-
-        colors.InsertFg = colors.white
-        colors.InsertBg = colors.blue_light
-
-        colors.VisualFg = colors.white
-        colors.VisualBg = colors.blue
-
-        colors.ReplaceFg = colors.black
-        colors.ReplaceBg = colors.green
-
-        colors.CommandFg = colors.white
-        colors.CommandBg = colors.red
 
         colors.LeftFg = colors.black
         colors.LeftBg = colors.white

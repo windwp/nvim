@@ -11,6 +11,7 @@
 
 * [Paq](https://github.com/savq/paq-nvim)
 * [Telescope](https://github.com/nvim-telescope/telescope.nvim)
+* [windline]
 
 
 ## Plug

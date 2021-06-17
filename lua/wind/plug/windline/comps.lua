@@ -126,26 +126,6 @@ comps.git_status = {
 }
 
 
-local search_count = vim_comps.search_count()
-comps.search_count={
-    hl_colors={
-        default = {'white', 'red'},
-        search = {'white', 'blue_light'},
-        sep_before = {'LeftBg', 'blue_light'},
-        sep_after = {'blue_light', 'LeftBg'}
-    },
-    text = function()
-        local count = search_count()
-        if count and #count > 1 then
-            return {
-                {sep.slant_right, 'sep_before'},
-                { count, 'search'},
-                {sep.slant_right,'sep_after'}
-            }
-        end
-        return nil
-    end
-}
 comps.file_name = {
     text = function ()
         local fullpath = vim.fn.expand('%:p')
@@ -191,7 +171,7 @@ comps.lsp_status = {
     hl_colors = {
         default = {'RightFg', 'RightBg'},
         red     = {'red', 'RightBg'},
-        sep     = {'RightBg', 'black_light'}
+        sep     = {'RightBg', 'black'}
     } ,
     text = function()
         return {
@@ -216,23 +196,54 @@ comps.lsp_status = {
     end,
 }
 
+local search_count = vim_comps.search_count()
+comps.search_count={
+    hl_colors={
+        search = {'black', 'yellow'},
+        default = {'black', 'white'},
+        sep_before = {'black', 'yellow'},
+        sep_after = {'yellow', 'LeftBg'}
+    },
+    text = function()
+        local count = search_count()
+        if count and #count > 1 then
+            if  not check_lsp_status() then
+                return {
+                    { count, 'default'},
+                    { sep.slant_right_thin,''}
+                }
+            end
+            return {
+                {sep.slant_right, 'sep_before'},
+                { count, 'search'},
+                {sep.slant_right,'sep_after'}
+            }
+        end
+        return nil
+    end
+}
 comps.lsp_diagnos = {
     name = 'diagnostic',
     hl_colors = {
-        default    = {'black'  , 'LeftBg' } ,
-        red        = {'red'    , 'black'  } ,
-        yellow     = {'yellow' , 'black'  } ,
-        sep_after  = {'black'  , 'LeftBg' } ,
-        sep_before = {'black'  , 'LeftBg' }
+        default    = {'black'  , 'LeftBg' },
+        red        = {'red'    , 'black'  },
+        yellow     = {'yellow' , 'black'  },
+        sep_after  = {'black'  , 'LeftBg' },
+        sep_before = {'black'  , 'LeftBg' },
     },
     text = function ()
         local c_lsp_status = check_lsp_status()
+        local count = search_count()
+        local sep_after = sep.slant_right
+        if count and #count >1 then
+            sep_after = ''
+        end
         if c_lsp_status then
             return{
                 {sep.slant_left, 'sep_before'} ,
                 {string.format("  %s", state.comp.lsp_error or 0), 'red'},
                 {string.format("  %s ", state.comp.lsp_warning or 0), 'yellow'},
-                {sep.slant_right,'sep_after' },
+                {sep_after, 'sep_after' },
             }
         end
         if git_comps.is_git() then
