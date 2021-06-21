@@ -76,7 +76,6 @@ vim.g.vifm_exec ='$HOME/.config/vifm/scripts/vifmrun'
 vim.g.vsnip_snippet_dir = Wind.vim_path .. "/snippets"
 
 -- TmuxLine {{{
-vim.g["lightline#bufferline#show_number"] = 2
 
 if vim.g.wind_tmux_line == 1 then
   vim.g.tpipeline_tabline = 1

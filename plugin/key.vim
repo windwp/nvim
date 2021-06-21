@@ -123,22 +123,20 @@ vmap <silent> <c-t>d yP'><cr>
 " map to ctrl tab it make me feel like i move tab on chrome"
 
 " it map to special characters on terminal use <a-{1-6}>
-if get(g:, 'wind_use_buffline', 0) == 0
-  nnoremap <c-t>1 1gt
-  nnoremap <c-t>2 2gt
-  nnoremap <c-t>3 3gt
-  nnoremap <c-t>4 4gt
-  nnoremap <c-t>5 5gt
-  nnoremap <c-t>6 6gt
-  " tab move
-  nnoremap <A-1> 1gt
-  nnoremap <A-2> 2gt
-  nnoremap <A-3> 3gt
-  nnoremap <A-4> 4gt
-  nnoremap <A-5> 5gt
-  nnoremap <A-6> 6gt
-  nnoremap <A-7> 7gt
-endif
+nnoremap <c-t>1 1gt
+nnoremap <c-t>2 2gt
+nnoremap <c-t>3 3gt
+nnoremap <c-t>4 4gt
+nnoremap <c-t>5 5gt
+nnoremap <c-t>6 6gt
+" tab move
+nnoremap <A-1> 1gt
+nnoremap <A-2> 2gt
+nnoremap <A-3> 3gt
+nnoremap <A-4> 4gt
+nnoremap <A-5> 5gt
+nnoremap <A-6> 6gt
+nnoremap <A-7> 7gt
 
 nnoremap <silent> <c-t>t :tabnext<CR>
 inoremap <silent> <c-t>t <ESC>:tabnext<CR>

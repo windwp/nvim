@@ -11,7 +11,7 @@
 
 * [Paq](https://github.com/savq/paq-nvim)
 * [Telescope](https://github.com/nvim-telescope/telescope.nvim)
-* [windline]
+* [windline](https://github.com/windwp/windline.nvim)
 
 
 ## Plug
@@ -32,7 +32,7 @@ Plug {'lambdalisue/fern.vim' , config = 'fern.vim'}
 ```
 Plug can lazy load with filetype(ft) and command(on).
 
-I don't need to rename Plug to `pag` or `use` :)
+I don't need to rename Plug to `paq` or `use` 
 
 All plugins config is store on folder /plug/.vim and /lua/wind/plug/.lua
 

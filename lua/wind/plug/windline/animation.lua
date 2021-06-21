@@ -1,6 +1,5 @@
-
 local animation = require('wlanimation')
-local efffects = require('wlanimation.effects')
+local effects = require('wlanimation.effects')
 
 local blue_colors = {
     '#90CAF9',
@@ -14,6 +13,7 @@ local blue_colors = {
 }
 
 local function play()
+    print(Wind.state.animation)
     if Wind.state.animation==true then
         Wind.state.animation=false
         animation.stop_all()
@@ -22,11 +22,11 @@ local function play()
         Wind.state.animation=true
         animation.animation({
             data = {
-                { 'waveleft1', efffects.list_color(blue_colors, 6) },
-                { 'waveleft2', efffects.list_color(blue_colors, 5) },
-                { 'waveleft3', efffects.list_color(blue_colors, 4) },
-                { 'waveleft4', efffects.list_color(blue_colors, 3) },
-                { 'waveleft5', efffects.list_color(blue_colors, 2) },
+                { 'waveleft1', effects.list_color(blue_colors, 6) },
+                { 'waveleft2', effects.list_color(blue_colors, 5) },
+                { 'waveleft3', effects.list_color(blue_colors, 4) },
+                { 'waveleft4', effects.list_color(blue_colors, 3) },
+                { 'waveleft5', effects.list_color(blue_colors, 2) },
             },
             -- timeout = 100,
             delay = 200,
@@ -35,11 +35,11 @@ local function play()
 
         animation.animation({
             data = {
-                { 'waveright1', efffects.list_color(blue_colors, 2) },
-                { 'waveright2', efffects.list_color(blue_colors, 3) },
-                { 'waveright3', efffects.list_color(blue_colors, 4) },
-                { 'waveright4', efffects.list_color(blue_colors, 5) },
-                { 'waveright5', efffects.list_color(blue_colors, 6) },
+                { 'waveright1', effects.list_color(blue_colors, 2) },
+                { 'waveright2', effects.list_color(blue_colors, 3) },
+                { 'waveright3', effects.list_color(blue_colors, 4) },
+                { 'waveright4', effects.list_color(blue_colors, 5) },
+                { 'waveright5', effects.list_color(blue_colors, 6) },
             },
             -- timeout = 100,
             delay = 200,

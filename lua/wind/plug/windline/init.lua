@@ -105,7 +105,7 @@ windline.setup({
         colors.waveright5 = colors.MiddleBg
         return colors
     end,
-
+    tabline={},
     statuslines = {
         default,
         explorer,

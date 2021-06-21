@@ -16,7 +16,7 @@ end
 
 local state = _G.WindLine.state
 
-local check_lsp_status = lsp_comps.check_lsp({func_check = is_lsp})
+local check_lsp_status = lsp_comps.check_custom_lsp({func_check = is_lsp})
 
 local hl_list = {
     Black    = {'white'      , 'black'      } ,
@@ -262,7 +262,7 @@ comps.explorer_name = {
         if bufnamemin ~= nil and #bufnamemin > 1 then return bufnamemin end
         return bufname
     end,
-    hl_colors = {'MiddleFg', 'MiddleBg'}
+    hl_colors = {'InactiveFg', 'NormalBg'}
 }
 
 comps.terminal_name = {
@@ -352,3 +352,4 @@ comps.wave_right={
     end
 }
 return comps
+
