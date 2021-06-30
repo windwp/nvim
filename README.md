@@ -30,7 +30,7 @@ Plug {'junegunn/gv.vim'      , on = 'GV'}
 Plug {'lambdalisue/fern.vim' , config = 'fern.vim'}
 
 ```
-Plug can lazy load with filetype(ft) and command(on).
+Plug can lazy load with filetype(ft),command(on), event and key.
 
 I don't need to rename Plug to `paq` or `use` 
 

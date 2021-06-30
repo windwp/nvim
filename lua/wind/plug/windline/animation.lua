@@ -13,7 +13,6 @@ local blue_colors = {
 }
 
 local function play()
-    print(Wind.state.animation)
     if Wind.state.animation==true then
         Wind.state.animation=false
         animation.stop_all()

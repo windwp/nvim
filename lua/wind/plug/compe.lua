@@ -44,22 +44,6 @@ require('vim.lsp.protocol').CompletionItemKind = {
     "♛";             -- TypeParameter = 25;
   }
 
-local npairs = require('nvim-autopairs')
-
-keymap.imap({'<cr>', function ()
-  if vim.fn.pumvisible() ~= 0  then
-    if vim.fn.complete_info()["selected"] ~= -1 then
-      return vim.fn["compe#confirm"]()
-    else
-      vim.defer_fn(function()
-        vim.fn["compe#confirm"]("<cr>")
-      end, 20)
-      return keymap.t"<c-n>"
-    end
-  else
-    return npairs.check_break_line_char()
-  end
-end, expr = true, noremap = true})
 
 
 keymap.imap({'<tab>',function ()

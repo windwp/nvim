@@ -3,6 +3,7 @@ local git_comps = require('windline.components.git')
 local basic_comps = require('windline.components.basic')
 local vim_comps = require('windline.components.vim')
 local lsp_comps = require('windline.components.lsp')
+local cache_utils = require('windline.cache_utils')
 local api = vim.api
 local sep = helper.separators
 
@@ -127,44 +128,10 @@ comps.git_status = {
 
 
 comps.file_name = {
-    text = function ()
-        local fullpath = vim.fn.expand('%:p')
-        local name     = vim.fn.expand('%:p:t')
-
-        if string.match(fullpath, "^fugitive") ~= nil then
-            name = name .. "[git]"
-            return {{name, 'git'}}
-        end
-        if name == '' then
-            name = '[No Name]'
-        end
-        return {{name ..  ' ', 'default'}}
-    end,
-    hl_colors = {
-        default     = {'LeftFg' , 'LeftBg' } ,
-        git = {'red', 'LeftBg'}
-    }
+    text = basic_comps.cache_file_name('','unique'),
+    hl_colors = {'LeftFg','LeftBg' }
 }
 
-comps.file_type = {
-    text = function()
-        local file_name, file_ext = vim.fn.expand("%:t"), vim.fn.expand("%:e")
-        local icon = helper.get_icon(file_name, file_ext)
-        local filetype = vim.bo.filetype
-        if filetype == "" then
-            return "  "
-        end
-        return string.format(" %s %s ", icon, filetype):lower()
-    end,
-    hl_colors = {
-        dev = {'red', 'RightBg'},
-        default = {'RightFg', 'RightBg'}
-    },
-    hl = function(hl_data)
-        if Wind.is_dev then return hl_data.dev end
-        return hl_data.default
-    end
-}
 
 comps.lsp_status = {
     name = "lsp_status",
@@ -173,27 +140,29 @@ comps.lsp_status = {
         red     = {'red', 'RightBg'},
         sep     = {'RightBg', 'black'}
     } ,
-    text = function()
+    text = cache_utils.cache_on_buffer('BufEnter','wl_lsp_status',function()
+      local file_name, file_ext = vim.fn.expand("%:t"), vim.fn.expand("%:e")
+      local icon = helper.get_icon(file_name, file_ext)
+      if is_lsp() then
         return {
-            {
-                function ()
-                    local file_name, file_ext = vim.fn.expand("%:t"), vim.fn.expand("%:e")
-                    local icon = helper.get_icon(file_name, file_ext)
-                    if is_lsp() then
-                        return icon .. ' ' .. vim.b.wind_lsp_server_name
-                    end
-                    local filetype = vim.bo.filetype
-                    if filetype == "" then return "  " end
-                    return string.format(" %s %s ", icon, filetype):lower()
-                end,
-                function(hl_data)
-                    if Wind.is_dev then  return hl_data.red end
-                    return hl_data.default
-                end
-            },
-            {sep.slant_right, 'sep'}
+          {icon .. ' ' .. vim.b.wind_lsp_server_name,'default'},
+          {sep.slant_right, 'sep'}
         }
-    end,
+      end
+      local filetype = vim.bo.filetype
+      if filetype == "" then
+        return {
+          {"  ", 'default'},
+          {sep.slant_right, 'sep'}
+        }
+      end
+      local text = string.format(" %s %s ", icon, filetype):lower()
+      local hl = Wind.is_dev and 'red' or 'default'
+      return {
+        { text, hl},
+        {sep.slant_right, 'sep'}
+      }
+    end),
 }
 
 local search_count = vim_comps.search_count()
@@ -262,7 +231,7 @@ comps.explorer_name = {
         if bufnamemin ~= nil and #bufnamemin > 1 then return bufnamemin end
         return bufname
     end,
-    hl_colors = {'InactiveFg', 'NormalBg'}
+    hl_colors = {'black', 'MiddleBg'}
 }
 
 comps.terminal_name = {
