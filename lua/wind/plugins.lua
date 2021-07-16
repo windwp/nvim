@@ -90,6 +90,7 @@ Plug {'fatih/vim-go'                 , ft = 'go'}
 Plug {'windwp/nvim-autopairs', config = 'autopairs', event = "InsertEnter"}
 Plug {'windwp/nvim-autospace', event = "BufRead"}
 Plug {'windwp/nvim-spectre', config = 'spectre'}
+Plug {'ojroques/vim-oscyank', config = 'oscyank', on = "OSCYank"}
 Plug {'mizlan/iswap.nvim', config = 'iswap', on = 'ISwapWith'}
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
@@ -110,7 +111,7 @@ Plug 'djoshea/vim-autoread'            --" auto update after save outside vim
 Plug {'machakann/vim-sandwich', event = "BufRead"}
 Plug 'obxhdx/vim-auto-highlight'       --" highlight current world
 
-Plug {'lukas-reineke/indent-blankline.nvim', branch = 'lua', cond = vim.g.wind_use_indent == 1, config = "indent-blankline"}
+Plug {'lukas-reineke/indent-blankline.nvim',  cond = vim.g.wind_use_indent == 1, config = "indent-blankline"}
 -- better match pairs and it can disable on insert mode
 Plug {'andymass/vim-matchup', config = 'matchup'}
 Plug {'hrsh7th/vim-eft', config = 'eft'} -- hight light character on ft key
